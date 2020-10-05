@@ -10,11 +10,11 @@ import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SharedComponent } from './shared/shared.component';
-import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import {MaterialModule} from './material.module';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { BooksComponent } from './books/books.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -25,7 +25,6 @@ import { BooksComponent } from './books/books.component';
     HomeComponent,
     ProfileComponent,
     SharedComponent,
-    LoginComponent,
     SignupComponent,
     BooksComponent
   ],
@@ -34,7 +33,8 @@ import { BooksComponent } from './books/books.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    ReactiveFormsModule
 
   ],
   providers: [],
