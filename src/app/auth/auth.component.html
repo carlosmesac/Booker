@@ -1,9 +1,12 @@
 <!--Login Form-->
 
 <mat-card class="login" *ngIf="isLoginMode">
+
   <mat-card-content>
+    <mat-card-title>
+      Login
+    </mat-card-title>
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
-      <h2>Log In</h2>
       <mat-error *ngIf="loginInvalid">
         The username and password were not recognised
       </mat-error>
@@ -32,6 +35,9 @@
 
 <!--SignUp Form-->
 <mat-card class="signup" *ngIf="!isLoginMode">
+  <mat-card-title>
+    Sign Up
+  </mat-card-title>
 <mat-vertical-stepper  linear #stepper>
   <mat-step [stepControl]="firstSignUpGroup" >
     <form [formGroup]="firstSignUpGroup">
