@@ -14,6 +14,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import {MaterialModule} from './material.module';
 import {FlexLayoutModule} from '@angular/flex-layout';
+import { BooksComponent } from './books/books.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import {FlexLayoutModule} from '@angular/flex-layout';
     ProfileComponent,
     SharedComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    BooksComponent
   ],
   imports: [
     BrowserModule,
