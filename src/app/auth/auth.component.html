@@ -43,6 +43,8 @@
       </mat-form-field>
       <div>
         <button mat-button matStepperNext>Next</button>
+        <button mat-button color="primary" (click)="onSubmit()">Go back</button>
+
       </div>
     </form>
   </mat-step>
@@ -82,7 +84,7 @@
     <div>
       <button mat-button matStepperPrevious>Back</button>
       <button mat-button (click)="stepper.reset()">Reset</button>
-      <button mat-button (click)="onSubmit()"> Create User</button>
+      <button mat-button (click)="onSubmit()">Create User</button>
 
     </div>
   </mat-step>

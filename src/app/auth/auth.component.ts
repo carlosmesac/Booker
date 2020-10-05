@@ -16,7 +16,7 @@ export class AuthComponent implements OnInit {
   secondSignUpGroup: FormGroup;
   thirdSignUpGroup: FormGroup;
 
-  constructor(private route: ActivatedRoute, private router:Router) {}
+  constructor(private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -37,7 +37,7 @@ export class AuthComponent implements OnInit {
     this.isLoginMode = !this.isLoginMode;
   }
   onSubmit() {
-    this.router.navigate(['home'])
+    this.router.navigate(['home']);
 
   }
 }
