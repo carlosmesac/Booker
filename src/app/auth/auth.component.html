@@ -43,7 +43,7 @@
       </mat-form-field>
       <div>
         <button mat-button matStepperNext>Next</button>
-        <button mat-button color="primary" (click)="onSubmit()">Go back</button>
+        <button mat-raised-button color="primary" (click)="changeMode()">Back</button>
 
       </div>
     </form>
@@ -54,8 +54,7 @@
       <mat-form-field>
         <mat-label>Email</mat-label>
         <mat-error> Please provide a valid email address </mat-error>
-        <input matInput formControlName="email" placeholder="Email"
-               >
+        <input matInput formControlName="email" placeholder="Email">
       </mat-form-field>
       <div>
         <button mat-button matStepperPrevious>Back</button>
