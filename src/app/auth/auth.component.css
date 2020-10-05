@@ -1,4 +1,4 @@
-mat-card {
+mat-card.login {
   max-width: 400px;
   margin: 2em auto;
   text-align: center;
@@ -6,4 +6,11 @@ mat-card {
 
 mat-form-field {
   display: block;
+}
+
+mat-card.signup {
+  max-width: 800px;
+  margin: 2em auto;
+  text-align: center;
+  box-shadow: 2px;
 }

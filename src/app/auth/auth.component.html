@@ -1,6 +1,6 @@
 <!--Login Form-->
 
-<mat-card *ngIf="isLoginMode">
+<mat-card class="login" *ngIf="isLoginMode">
   <mat-card-content>
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <h2>Log In</h2>
@@ -31,12 +31,14 @@
 
 
 <!--SignUp Form-->
-<mat-vertical-stepper *ngIf="!isLoginMode" linear #stepper>
-  <mat-step [stepControl]="firstSignUpGroup">
+<mat-card class="signup" *ngIf="!isLoginMode">
+<mat-vertical-stepper  linear #stepper>
+  <mat-step [stepControl]="firstSignUpGroup" >
     <form [formGroup]="firstSignUpGroup">
-      <ng-template matStepLabel>Fill out your name</ng-template>
+      <ng-template matStepLabel>Fill out your username</ng-template>
       <mat-form-field>
-        <mat-label>Name</mat-label>
+        <mat-label>Username</mat-label>
+        <mat-error> Please provide a valid Username </mat-error>
         <input matInput placeholder="Username" formControlName="username" >
       </mat-form-field>
       <div>
@@ -46,9 +48,10 @@
   </mat-step>
   <mat-step [stepControl]="secondSignUpGroup">
     <form [formGroup]="secondSignUpGroup">
-      <ng-template matStepLabel>Fill out your address</ng-template>
+      <ng-template matStepLabel>Fill out your email</ng-template>
       <mat-form-field>
-        <mat-label>Address</mat-label>
+        <mat-label>Email</mat-label>
+        <mat-error> Please provide a valid email address </mat-error>
         <input matInput formControlName="email" placeholder="Email"
                >
       </mat-form-field>
@@ -62,10 +65,9 @@
     <form [formGroup]="thirdSignUpGroup">
       <ng-template matStepLabel>Fill up your password</ng-template>
       <mat-form-field>
-        <mat-label>Address</mat-label>
+        <mat-label>Password</mat-label>
+        <mat-error> Please provide a valid password </mat-error>
         <input matInput formControlName="password" placeholder="Password"
-                type="password">
-        <input matInput formControlName="confPassword" placeholder="Confirm your password"
                 type="password">
       </mat-form-field>
       <div>
@@ -80,8 +82,10 @@
     <div>
       <button mat-button matStepperPrevious>Back</button>
       <button mat-button (click)="stepper.reset()">Reset</button>
+      <button mat-button (click)="onSubmit()"> Create User</button>
+
     </div>
   </mat-step>
 </mat-vertical-stepper>
 
-
+</mat-card>

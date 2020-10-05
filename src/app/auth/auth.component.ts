@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth',
@@ -15,7 +16,7 @@ export class AuthComponent implements OnInit {
   secondSignUpGroup: FormGroup;
   thirdSignUpGroup: FormGroup;
 
-  constructor() {}
+  constructor(private route: ActivatedRoute, private router:Router) {}
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -30,11 +31,13 @@ export class AuthComponent implements OnInit {
     });
     this.thirdSignUpGroup = new FormGroup({
       password: new FormControl(null, Validators.required),
-      confPassword: new FormControl(null, Validators.required),
     });
   }
   changeMode() {
     this.isLoginMode = !this.isLoginMode;
   }
-  onSubmit() {}
+  onSubmit() {
+    this.router.navigate(['home'])
+
+  }
 }
