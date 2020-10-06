@@ -16,12 +16,9 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import { BooksComponent } from './books/books.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule } from '@angular/common/http';
-
-
-import * as firebase from 'firebase';
 import { firebaseConfig } from 'src/environments/environment';
+import {AngularFireModule} from '@angular/fire';
 
-firebase.initializeApp(firebaseConfig);
 
 @NgModule({
   declarations: [
@@ -41,7 +38,8 @@ firebase.initializeApp(firebaseConfig);
     MaterialModule,
     FlexLayoutModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AngularFireModule.initializeApp(firebaseConfig)
 
   ],
   providers: [],

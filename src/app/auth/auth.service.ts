@@ -3,6 +3,7 @@ import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import {BehaviorSubject} from 'rxjs';
 import {Router} from '@angular/router';
+import {AngularFireAuth} from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +12,15 @@ export class AuthService {
 
   loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
-  constructor(private router: Router) {
+  constructor(private router: Router,
+              private fireAuth: AngularFireAuth) {
+
+    this.fireAuth.onAuthStateChanged(user => {
+      if (user) {
+        console.log(user);
+        this.loggedIn.next(true);
+      }
+    });
 
   }
 
