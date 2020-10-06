@@ -2,7 +2,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
-import { MatStepperModule, MatVerticalStepper } from '@angular/material/stepper';
+import {
+  MatStepperModule,
+  MatVerticalStepper,
+} from '@angular/material/stepper';
 
 @Component({
   selector: 'app-auth',
@@ -15,7 +18,7 @@ export class AuthComponent implements OnInit {
   isLoginMode: boolean = true;
   errorMessage: string = null;
 
-  @ViewChild('stepper',{static:false}) stepper : MatVerticalStepper
+  @ViewChild('stepper', { static: false }) stepper: MatVerticalStepper;
 
   firstSignUpGroup: FormGroup;
   secondSignUpGroup: FormGroup;
@@ -63,24 +66,31 @@ export class AuthComponent implements OnInit {
   signUp() {
     const email = this.secondSignUpGroup.get('email').value;
     const password = this.thirdSignUpGroup.get('password').value;
-    this.authService.onSignUp(email, password).then(user => {
-      console.log(user);
-      this.router.navigate(['home']);
-    }).catch((error) => {
-     this.errorMessage = error.message;
-     console.log(this.errorMessage);
-     this.stepper.reset();
-    });
-
-
-
-
-
+    this.authService
+      .onSignUp(email, password)
+      .then((user) => {
+        console.log(user);
+        this.router.navigate(['home']);
+      })
+      .catch((error) => {
+        this.errorMessage = error.message;
+        console.log(this.errorMessage);
+        this.stepper.reset();
+      });
   }
 
   login() {
     const email = this.form.get('email').value;
     const password = this.form.get('password').value;
-    this.authService.onLogin(email, password);
+    this.authService
+      .onLogin(email, password)
+      .then((user) => {
+        console.log(user);
+        this.router.navigate(['home']);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
   }
+
 }
