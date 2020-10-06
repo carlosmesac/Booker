@@ -18,6 +18,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 
+import * as firebase from 'firebase';
+import { firebaseConfig } from 'src/environments/environment';
+
+firebase.initializeApp(firebaseConfig);
+
 @NgModule({
   declarations: [
     AppComponent,
