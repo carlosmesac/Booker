@@ -46,10 +46,10 @@
           <input matInput placeholder="Username" formControlName="username" />
         </mat-form-field>
         <div>
+          <button mat-button matStepperNext>Next</button>
           <button mat-raised-button color="primary" (click)="changeMode()">
             Back to Login
           </button>
-          <button mat-button matStepperNext>Next</button>
         </div>
       </form>
     </mat-step>
@@ -62,8 +62,8 @@
           <input matInput formControlName="email" placeholder="Email" />
         </mat-form-field>
         <div>
-          <button mat-button matStepperPrevious>Back</button>
           <button mat-button matStepperNext>Next</button>
+          <button mat-button matStepperPrevious>Back</button>
         </div>
       </form>
     </mat-step>
@@ -81,8 +81,8 @@
           />
         </mat-form-field>
         <div>
-          <button mat-button matStepperPrevious>Back</button>
           <button mat-button matStepperNext>Next</button>
+          <button mat-button matStepperPrevious>Back</button>
         </div>
       </form>
     </mat-step>
