@@ -15,7 +15,7 @@ import {MaterialModule} from './material.module';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { BooksComponent } from './books/books.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import {HttpClientModule } from '@angular/common/http';
 
 
 import * as firebase from 'firebase';
