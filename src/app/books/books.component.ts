@@ -15,6 +15,7 @@ export class BooksComponent implements AfterViewInit {
 
   @ViewChild('input', { static: false }) input: ElementRef;
 
+  // tslint:disable-next-line:typedef
   ngAfterViewInit() {
     // server-side search
     fromEvent(this.input.nativeElement, 'keyup')
