@@ -21,16 +21,12 @@ export class AuthService {
         this.loggedIn.next(true);
       }
     });
-
   }
-
 
   signUp(email: string, password: string) {
     return firebase
       .auth()
       .createUserWithEmailAndPassword(email, password);
-
-
   }
 
   login(email: string, password: string) {
@@ -60,8 +56,8 @@ export class AuthService {
 
   logout() {
     return firebase.auth().signOut().then(() => {
-      this.router.navigate(['/auth']);
       this.loggedIn.next(false);
+      this.router.navigate(['/auth']);
     });
   }
 
