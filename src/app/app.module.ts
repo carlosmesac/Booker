@@ -20,6 +20,9 @@ import { firebaseConfig } from 'src/environments/environment';
 import {AngularFireModule} from '@angular/fire';
 
 
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,6 +43,7 @@ import {AngularFireModule} from '@angular/fire';
     ReactiveFormsModule,
     HttpClientModule,
     AngularFireModule.initializeApp(firebaseConfig)
+
 
   ],
   providers: [],

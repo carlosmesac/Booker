@@ -17,7 +17,6 @@ const routes: Routes = [
   {
     path: 'books',
     component: BooksComponent,
-    canActivate: [AuthGuard]
   },
   {
     path: 'profile',

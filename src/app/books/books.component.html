@@ -1,7 +1,39 @@
-<div style="margin: 2em;">
-<mat-form-field appearance="outline" style="align-self: left;">
+<div style="margin: 2em">
+  <mat-form-field appearance="outline" style="align-self: left">
     <mat-label>Search for a Book</mat-label>
-    <input matInput placeholder="Please add book information" #input/>
+    <input matInput placeholder="Please add book information" #input />
     <mat-icon matSuffix>book</mat-icon>
   </mat-form-field>
+
+  <div >
+    <div *ngFor="let book of books">
+      <mat-card
+        class="example-card inline-block"
+        *ngIf="book.volumeInfo.imageLinks.thumbnail"
+
+      >
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>
+            {{ book.volumeInfo.title }}
+          </mat-card-title>
+          <mat-card-subtitle
+            *ngFor="let author of book.volumeInfo.authors"
+          >
+            {{ author }}
+          </mat-card-subtitle>
+        </mat-card-header>
+        <img
+          mat-card-image
+          src="{{ book.volumeInfo.imageLinks.thumbnail }}"
+          alt=""
+        />
+        <mat-card-content>
+          <p>
+            {{ book.volumeInfo.description }}
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
 </div>

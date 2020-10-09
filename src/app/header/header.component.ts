@@ -19,7 +19,6 @@ export class HeaderComponent implements OnInit {
     this.authService.loggedIn.subscribe(value => {
       this.loggedIn = value;
       this.changeDetector.detectChanges();
-      console.log(value);
     });
   }
 
