@@ -14,7 +14,6 @@ import { Observable } from 'rxjs';
 export class BooksComponent implements AfterViewInit {
 
   books: Book[];
-  booksContainer: Book[];
 
 
   constructor(private booksService: BooksService) {}
@@ -33,9 +32,7 @@ export class BooksComponent implements AfterViewInit {
           const bo: Observable<Book[]> = this.booksService.search(
             this.input.nativeElement.value
           );
-
           this.books = await bo.toPromise();
-
           console.log(this.books);
 
         })

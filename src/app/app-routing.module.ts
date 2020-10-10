@@ -8,6 +8,7 @@ import {BooksComponent} from './books/books.component';
 import {AuthGuard} from './auth/auth.guard';
 
 const routes: Routes = [
+
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {
     path: 'home',

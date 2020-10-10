@@ -30,7 +30,7 @@ export class BooksService {
   constructor(private http: HttpClient) {}
   search(query: string): Observable<Book[]> {
     return this.http
-      .get<{ items: Book[] }>(`${this.API}?q=${query}`+"&maxResults=20")
+      .get<{ items: Book[] }>(`${this.API}?q=${query}` + '&maxResults=20')
       .pipe(map((books) => books.items || []));
   }
   getById(volumeId: string): Observable<Book> {

@@ -1,16 +1,17 @@
 <div style="margin: 2em">
   <mat-form-field appearance="outline" style="align-self: left">
     <mat-label>Search for a Book</mat-label>
-    <input matInput placeholder="Please add book information" #input />
-    <mat-icon matSuffix>book</mat-icon>
+    <input matInput placeholder="Please add book information" #input/>
+    <button mat-button *ngIf="input.value" matSuffix mat-icon-button aria-label="Clear" (click)="input.value=''">
+      <mat-icon matSuffix>close</mat-icon>
+    </button>
   </mat-form-field>
 
-  <div >
+  <div>
     <div *ngFor="let book of books">
       <mat-card
         class="example-card inline-block"
-        *ngIf="book.volumeInfo.imageLinks.thumbnail"
-
+        *ngIf="book.volumeInfo.imageLinks.thumbnail && input.value!==''"
       >
         <mat-card-header>
           <div mat-card-avatar class="example-header-image"></div>
