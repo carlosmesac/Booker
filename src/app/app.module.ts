@@ -9,7 +9,6 @@ import { AuthComponent } from './auth/auth.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
-import { SharedComponent } from './shared/shared.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import {MaterialModule} from './material.module';
 import {FlexLayoutModule} from '@angular/flex-layout';
@@ -18,6 +17,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule } from '@angular/common/http';
 import { firebaseConfig } from 'src/environments/environment';
 import {AngularFireModule} from '@angular/fire';
+import { ShortenPipe } from './shared/pipes/shorten.pipe';
 
 
 
@@ -30,9 +30,9 @@ import {AngularFireModule} from '@angular/fire';
     HeaderComponent,
     HomeComponent,
     ProfileComponent,
-    SharedComponent,
     SignupComponent,
-    BooksComponent
+    BooksComponent,
+    ShortenPipe
   ],
   imports: [
     BrowserModule,
