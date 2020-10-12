@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 export type Book = {
@@ -26,6 +26,11 @@ export type Book = {
   providedIn: 'root',
 })
 export class BooksService {
+
+  books:Book[]=[]
+  booksChanged= new Subject<Book[]>();
+  currentID:number
+
   private API = 'https://www.googleapis.com/books/v1/volumes';
   constructor(private http: HttpClient) {}
   search(query: string): Observable<Book[]> {
@@ -35,5 +40,18 @@ export class BooksService {
   }
   getById(volumeId: string): Observable<Book> {
     return this.http.get<Book>(`${this.API}/${volumeId}`);
+  }
+
+  setBooks(books:Book[]){
+    this.books = books
+    this.booksChanged.next(this.books.slice())
+  }
+
+  getBookByID(id:number){
+    return this.books[id]
+  }
+
+  setCurrentID(id:number){
+    this.currentID = id
   }
 }

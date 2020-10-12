@@ -15,7 +15,7 @@
 </div>
 
     <div id="list-th" fxLayout="row wrap" fxLayoutGap="20px grid" >
-      <div *ngFor="let book of books"
+      <div *ngFor="let book of books;let i = index"
            [fxFlex]="100 / 5 + '%'"
            fxFlex.xs="100%"
            fxFlex.sm="33%">
@@ -31,8 +31,7 @@
             }}
             <br>
             <span class="author" *ngIf="book.volumeInfo.authors">{{ book.volumeInfo.authors.slice(0, 1).toString()|shorten:15}}</span>
-            <button class="detail" mat-button (click)="onClickDetail(book)"><mat-icon>article</mat-icon></button>
-
+            <button class="detail" mat-button (click)="onClickDetail(i)" ><mat-icon>article</mat-icon></button>
           </p>
         </div>
         </div>

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Book, BooksService } from '../books.service';
 
 @Component({
   selector: 'app-book-dialog',
@@ -7,7 +8,12 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./book-dialog.component.css']
 })
 export class BookDialogComponent implements OnInit {
-  constructor(private dialog:MatDialog) { }
 
-  ngOnInit(): void { }
+  bookDetail:Book
+  constructor(private bookService:BooksService) { }
+
+  ngOnInit(): void {
+    this.bookDetail = this.bookService.getBookByID(this.bookService.currentID)
+    console.log(this.bookDetail);
+   }
 }

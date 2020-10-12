@@ -20,6 +20,7 @@ export class BooksComponent implements AfterViewInit {
 
   constructor(private booksService: BooksService, private dialog:MatDialog) {}
 
+  bookDetail:Book
   @ViewChild('input', { static: false }) input: ElementRef;
   dialogSub:Subscription;
 
@@ -37,13 +38,16 @@ export class BooksComponent implements AfterViewInit {
           );
           this.books = await bo.toPromise();
           console.log(this.books);
+          this.booksService.setBooks(this.books)
 
         })
       )
       .subscribe();
   }
 
-  onClickDetail(book:Book){
+  onClickDetail(id:number){
+
+    this.booksService.setCurrentID(id)
     const dialogRef = this.dialog.open(BookDialogComponent)
 
     this.dialogSub = dialogRef.afterClosed().subscribe(result =>{
