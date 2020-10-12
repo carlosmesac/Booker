@@ -19,7 +19,7 @@
            [fxFlex]="100 / 5 + '%'"
            fxFlex.xs="100%"
            fxFlex.sm="33%">
-      <div class="book read" *ngIf="input.value !==''">
+      <div class="book read" >
         <div class="cover">
           <img src="{{ book.volumeInfo.imageLinks.thumbnail.replace('=curl&source=gbs_api','')  }}"  *ngIf="book.volumeInfo.imageLinks" >
           <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/387928/book%20placeholder.png"  *ngIf="!book.volumeInfo.imageLinks" >
