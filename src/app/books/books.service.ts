@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
-import { map } from 'rxjs/operators';
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Observable, Subject} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 export type Book = {
   id: string;
@@ -27,31 +27,35 @@ export type Book = {
 })
 export class BooksService {
 
-  books:Book[]=[]
-  booksChanged= new Subject<Book[]>();
-  currentID:number
+  books: Book[] = [];
+  booksChanged = new Subject<Book[]>();
+  currentID: number;
 
   private API = 'https://www.googleapis.com/books/v1/volumes';
-  constructor(private http: HttpClient) {}
+
+  constructor(private http: HttpClient) {
+  }
+
   search(query: string): Observable<Book[]> {
     return this.http
       .get<{ items: Book[] }>(`${this.API}?q=${query}` + '&maxResults=20')
       .pipe(map((books) => books.items || []));
   }
+
   getById(volumeId: string): Observable<Book> {
     return this.http.get<Book>(`${this.API}/${volumeId}`);
   }
 
-  setBooks(books:Book[]){
-    this.books = books
-    this.booksChanged.next(this.books.slice())
+  setBooks(books: Book[]) {
+    this.books = books;
+    this.booksChanged.next(this.books.slice());
   }
 
-  getBookByID(id:number){
-    return this.books[id]
+  getBookByID(id: number) {
+    return this.books[id];
   }
 
-  setCurrentID(id:number){
-    this.currentID = id
+  setCurrentID(id: number) {
+    this.currentID = id;
   }
 }

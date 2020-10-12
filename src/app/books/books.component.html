@@ -14,26 +14,31 @@
   </mat-form-field>
 </div>
 
-    <div id="list-th" fxLayout="row wrap" fxLayoutGap="20px grid" >
-      <div *ngFor="let book of books;let i = index"
-           [fxFlex]="100 / 5 + '%'"
-           fxFlex.xs="100%"
-           fxFlex.sm="33%">
-      <div class="book read" >
-        <div class="cover">
-          <img src="{{ book.volumeInfo.imageLinks.thumbnail.replace('=curl&source=gbs_api','')  }}"  *ngIf="book.volumeInfo.imageLinks" >
-          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/387928/book%20placeholder.png"  *ngIf="!book.volumeInfo.imageLinks" >
+<div id="list-th" fxLayout="row wrap" fxLayoutGap="20px grid">
+  <div *ngFor="let book of books; let i = index"
+       [fxFlex]="100 / 5 + '%'"
+       fxFlex.xs="100%"
+       fxFlex.sm="33%">
+    <div class="book read">
+      <div class="cover">
+        <img src="{{ book.volumeInfo.imageLinks.thumbnail.replace('=curl&source=gbs_api','')  }}"
+             *ngIf="book.volumeInfo.imageLinks">
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/387928/book%20placeholder.png"
+             *ngIf="!book.volumeInfo.imageLinks">
 
-        </div>
-        <div class="description" >
-          <p class="title">{{
-            book.volumeInfo.title | shorten: 15
-            }}
-            <br>
-            <span class="author" *ngIf="book.volumeInfo.authors">{{ book.volumeInfo.authors.slice(0, 1).toString()|shorten:15}}</span>
-            <button class="detail" mat-button (click)="onClickDetail(i)" ><mat-icon>article</mat-icon></button>
-          </p>
-        </div>
-        </div>
+      </div>
+      <div class="description">
+        <p class="title">{{
+          book.volumeInfo.title.toString() | shorten: 15
+          }}
+          <br>
+          <span class="author"
+                *ngIf="book.volumeInfo.authors">{{ book.volumeInfo.authors.slice(0, 1).toString()|shorten:15}}</span>
+          <button class="detail" mat-button (click)="onClickDetail(i)">
+            <mat-icon>article</mat-icon>
+          </button>
+        </p>
       </div>
     </div>
+  </div>
+</div>

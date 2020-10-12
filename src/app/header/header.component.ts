@@ -12,7 +12,8 @@ export class HeaderComponent implements OnInit {
   loggedIn: boolean = false;
 
   constructor(private authService: AuthService,
-              private changeDetector: ChangeDetectorRef) {
+              private changeDetector: ChangeDetectorRef,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -24,5 +25,6 @@ export class HeaderComponent implements OnInit {
 
   onLogout() {
     this.authService.logout();
+
   }
 }

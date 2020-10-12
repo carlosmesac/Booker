@@ -1,15 +1,14 @@
 <!--Login Form-->
-
 <mat-card class="login" *ngIf="isLoginMode">
   <mat-card-content>
-    <mat-card-title> Login </mat-card-title>
+    <mat-card-title> Login</mat-card-title>
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <mat-error *ngIf="loginInvalid">
         The username and password were not recognised
       </mat-error>
       <mat-form-field class="full-width-input">
-        <input matInput placeholder="Email" formControlName="email" />
-        <mat-error> Please provide a valid email address </mat-error>
+        <input matInput placeholder="Email" formControlName="email"/>
+        <mat-error> Please provide a valid email address</mat-error>
       </mat-form-field>
       <mat-form-field class="full-width-input">
         <input
@@ -18,10 +17,11 @@
           type="password"
           formControlName="password"
         />
-        <mat-error> Please provide a valid password </mat-error>
+        <mat-error> Please provide a valid password</mat-error>
       </mat-form-field>
-      <br />
-      <button mat-raised-button color="primary" type="submit">Login</button> |
+      <br/>
+      <button mat-raised-button color="primary" type="submit">Login</button>
+      |
       <button
         mat-raised-button
         color="accent"
@@ -35,15 +35,15 @@
 
 <!--SignUp Form-->
 <mat-card class="signup" *ngIf="!isLoginMode">
-  <mat-card-title> Sign Up </mat-card-title>
+  <mat-card-title> Sign Up</mat-card-title>
   <mat-vertical-stepper linear #stepper>
     <mat-step [stepControl]="firstSignUpGroup">
       <form [formGroup]="firstSignUpGroup">
         <ng-template matStepLabel>Fill out your username</ng-template>
         <mat-form-field>
           <mat-label>Username</mat-label>
-          <mat-error> Please provide a valid Username </mat-error>
-          <input matInput placeholder="Username" formControlName="username" />
+          <mat-error> Please provide a valid Username</mat-error>
+          <input matInput placeholder="Username" formControlName="username"/>
         </mat-form-field>
         <div>
           <button mat-button matStepperNext>Next</button>
@@ -58,8 +58,8 @@
         <ng-template matStepLabel>Fill out your email</ng-template>
         <mat-form-field>
           <mat-label>Email</mat-label>
-          <mat-error> Please provide a valid email address </mat-error>
-          <input matInput formControlName="email" placeholder="Email" />
+          <mat-error> Please provide a valid email address</mat-error>
+          <input matInput formControlName="email" placeholder="Email"/>
         </mat-form-field>
         <div>
           <button mat-button matStepperNext>Next</button>
@@ -72,7 +72,7 @@
         <ng-template matStepLabel>Fill up your password</ng-template>
         <mat-form-field>
           <mat-label>Password</mat-label>
-          <mat-error> Please provide a valid password </mat-error>
+          <mat-error> Please provide a valid password</mat-error>
           <input
             matInput
             formControlName="password"

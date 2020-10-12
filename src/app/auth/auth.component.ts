@@ -18,6 +18,7 @@ export class AuthComponent implements OnInit {
   loginInvalid: boolean = false;
   isLoginMode: boolean = true;
   errorMessage: string = null;
+  isLoading: boolean = false;
 
   @ViewChild('stepper', {static: false}) stepper: MatVerticalStepper;
 
@@ -63,8 +64,11 @@ export class AuthComponent implements OnInit {
   onSubmit() {
     if (this.isLoginMode) {
       this.onLogin();
+      this.isLoading = true;
     } else {
       this.onSignUp();
+      this.isLoading = true;
+
     }
   }
 
