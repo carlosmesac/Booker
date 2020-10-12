@@ -92,6 +92,8 @@ export class AuthComponent implements OnInit {
 
   }
 
+
+
   // async onLoginSync() {
   //   const email = this.form.get('email').value;
   //   const password = this.form.get('password').value;

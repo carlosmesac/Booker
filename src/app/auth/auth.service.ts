@@ -41,6 +41,7 @@ export class AuthService {
     });
   }
 
+
   // async loginSync(email: string, password: string): Promise<boolean> {
   //   try {
   //     await firebase.auth().signInWithEmailAndPassword(email, password);
@@ -61,15 +62,6 @@ export class AuthService {
     });
   }
 
-//     firebase
-//       .auth()
-//       .signInWithEmailAndPassword(email, password).then(() => {
-//       this.loggedIn.next(true);
-//       this.router.navigate(['home']);
-//     }).catch(errorMessage => {
-//       console.log(errorMessage);
-//       this.loggedIn.next(false);
-//     });
-// }
+
 
 }

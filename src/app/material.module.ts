@@ -10,7 +10,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import {MatStepperModule} from '@angular/material/stepper';
-
+import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogActions } from "@angular/material/dialog";
 
 @NgModule({
   imports: [
@@ -29,7 +30,8 @@ import {MatStepperModule} from '@angular/material/stepper';
     MatListModule,
     MatInputModule,
     MatCardModule,
-    MatStepperModule
+    MatStepperModule,
+    MatDialogModule,
   ],
   exports: [
     MatSidenavModule,
@@ -47,7 +49,9 @@ import {MatStepperModule} from '@angular/material/stepper';
     MatListModule,
     MatInputModule,
     MatCardModule,
-    MatStepperModule
+    MatStepperModule,
+    MatDialogModule,
+
 
   ]
 })

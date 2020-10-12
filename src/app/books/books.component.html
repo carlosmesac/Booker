@@ -8,7 +8,7 @@
       matSuffix
       mat-icon-button
       aria-label="Clear"
-      (click)="input.value = ''">
+      (click)="onClearInput()">
       <mat-icon matSuffix>close</mat-icon>
     </button>
   </mat-form-field>
@@ -19,18 +19,21 @@
            [fxFlex]="100 / 5 + '%'"
            fxFlex.xs="100%"
            fxFlex.sm="33%">
-      <div class="book read" *ngIf="book.volumeInfo.imageLinks.thumbnail && input.value !==''">
-        <div class="cover" >
-          <img src="{{ book.volumeInfo.imageLinks.thumbnail.replace('=curl&source=gbs_api','')  }}">
+      <div class="book read" *ngIf="input.value !==''">
+        <div class="cover">
+          <img src="{{ book.volumeInfo.imageLinks.thumbnail.replace('=curl&source=gbs_api','')  }}"  *ngIf="book.volumeInfo.imageLinks" >
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/387928/book%20placeholder.png"  *ngIf="!book.volumeInfo.imageLinks" >
+
         </div>
         <div class="description" >
           <p class="title">{{
             book.volumeInfo.title | shorten: 15
             }}
             <br>
-            <span class="author">{{ book.volumeInfo.authors.slice(0, 1)}}</span></p>
-          <button mat-button>LIKE</button>
-          <button mat-button>SHARE</button>
+            <span class="author" *ngIf="book.volumeInfo.authors">{{ book.volumeInfo.authors.slice(0, 1).toString()|shorten:15}}</span>
+            <button class="detail" mat-button (click)="onClickDetail(book)"><mat-icon>article</mat-icon></button>
+
+          </p>
         </div>
         </div>
       </div>

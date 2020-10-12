@@ -134,3 +134,8 @@ star animation
 /***********************************
 zoom on click
 ***********************************/
+
+button.detail{
+  float: right;
+  margin-top:-20px
+}
