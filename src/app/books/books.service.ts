@@ -11,7 +11,14 @@ export type Book = {
     language: string;
     authors: string[];
     publisher: string;
-    publishDate: string;
+    categories:string[];
+    publishedDate: string;
+    previewLink: string;
+    infoLink: string;
+    industryIdentifiers:{
+      type:string;
+      indentifier:string;
+    }[]
     description: string;
     averageRating: number;
     ratingsCount: number;

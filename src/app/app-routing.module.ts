@@ -11,6 +11,9 @@ const routes: Routes = [
 
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {
+    path: 'auth', component: AuthComponent
+  },
+  {
     path: 'home',
     component: HomeComponent,
     canActivate: [AuthGuard],
@@ -23,12 +26,8 @@ const routes: Routes = [
     path: 'profile',
     component: ProfileComponent,
     canActivate: [AuthGuard]
-  },
-  {
-    path: 'auth', component: AuthComponent, children: [
-      {path: 'signup', component: SignupComponent}
-    ]
   }
+
 
 ];
 

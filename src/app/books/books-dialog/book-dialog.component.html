@@ -1,19 +1,64 @@
-<h2 mat-dialog-title>Book detail</h2>
+<h2 mat-dialog-title>{{ bookDetail.volumeInfo.title }}</h2>
 <mat-dialog-content class="mat-typography">
-  <h3> {{"Tittle: " + bookDetail.volumeInfo.title }}</h3>
-  <div>
-    <h3> {{"Authors: " + bookDetail.volumeInfo.authors.toString().replace(',', ', ') }}</h3>
+  <div
+  class="cover"
+  style="
+  float: right">
+  <img
+    src="{{
+      bookDetail.volumeInfo.imageLinks.thumbnail.replace(
+        '=curl&source=gbs_api',
+        ''
+      )
+    }}"
+    alt=""
+  />
+  <br>
+  <div style="text-align: center;">
+    <button mat-button (click)="onPreview(bookDetail.volumeInfo.previewLink)" [disabled]="bookDetail.volumeInfo.previewLink ? false:true">Preview</button>
+    <button mat-button (click)="onBuy(bookDetail.volumeInfo.infoLink)" [disabled]="bookDetail.volumeInfo.infoLink ? false:true">Buy</button>
   </div>
 
-    <div class="cover">
-      <img src="{{bookDetail.volumeInfo.imageLinks.thumbnail.replace('=curl&source=gbs_api','')}}" alt=""
-           style="width:100%">
-      <p>{{"Publisher: " + bookDetail.volumeInfo.publisher.toString()}}</p>
-    </div>
-  <br><br><br><br>
-  <p>{{bookDetail.volumeInfo.description.toString()}}</p>
+</div>
+<div >
 
+
+  <h4
+  class="bookDescription"
+  >
+    {{ bookDetail.volumeInfo.description.toString() }}
+  </h4>
+
+  <h4 *ngIf="bookDetail.volumeInfo.authors">Characteristics</h4>
+  <table>
+    <tr *ngIf="bookDetail.volumeInfo.authors">
+      <td>Author</td>
+      <td>{{ bookDetail.volumeInfo.authors.toString().replace(',', ', ') }}</td>
+    </tr>
+    <tr *ngIf="bookDetail.volumeInfo.publisher">
+      <td>Publisher</td>
+      <td>{{bookDetail.volumeInfo.publisher}}</td>
+    </tr>
+    <tr *ngIf="bookDetail.volumeInfo.ratingsCount">
+      <td>Rating Count</td>
+      <td>{{bookDetail.volumeInfo.ratingsCount}}</td>
+    </tr>
+    <tr *ngIf="bookDetail.volumeInfo.averageRating">
+      <td>Rating</td>
+      <td>{{bookDetail.volumeInfo.averageRating}}</td>
+    </tr>
+    <tr *ngIf="bookDetail.volumeInfo.categories">
+      <td>Categories</td>
+      <td>{{bookDetail.volumeInfo.categories.toString()}}</td>
+    </tr>
+    <tr *ngIf="bookDetail.volumeInfo.publishedDate">
+      <td>Publish Date</td>
+      <td>{{bookDetail.volumeInfo.publishedDate}}</td>
+    </tr>
+  </table>
+</div>
 </mat-dialog-content>
+
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancel</button>
   <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button>

@@ -1,16 +1,15 @@
 
+
 .cover {
-  width: 200px;
-  height: 285px;
+
 }
 
 .cover img {
   width: 200px;
   height: 285px;
-  border: 2px solid gray;
-
+  margin-left: 10px;
+  display: block
 }
-
 
 .cover p {
   font-family: "Arial Black";
@@ -18,3 +17,10 @@
   padding: 10px 20px;
 }
 
+.bookDescription{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+      font-style: italic;
+      text-align: justify;
+      text-justify: inter-word;
+
+}

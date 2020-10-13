@@ -18,4 +18,13 @@ export class BookDialogComponent implements OnInit {
     this.bookDetail = this.bookService.getBookByID(this.bookService.currentID);
     console.log(this.bookDetail);
   }
+
+  onPreview(previewLink: string){
+ window.open(previewLink);
+  }
+
+  onBuy(buyLink: string){
+    window.open(buyLink);
+
+  }
 }
