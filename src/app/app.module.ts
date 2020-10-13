@@ -19,6 +19,7 @@ import { firebaseConfig } from 'src/environments/environment';
 import {AngularFireModule} from '@angular/fire';
 import { ShortenPipe } from './shared/pipes/shorten.pipe';
 import { BookDialogComponent } from './books/books-dialog/book-dialog.component';
+import { BooksCommentComponent } from './books/books-dialog/books-comment/books-comment.component';
 
 
 
@@ -34,7 +35,8 @@ import { BookDialogComponent } from './books/books-dialog/book-dialog.component'
     SignupComponent,
     BooksComponent,
     BookDialogComponent,
-    ShortenPipe
+    ShortenPipe,
+    BooksCommentComponent
   ],
   imports: [
     BrowserModule,
