@@ -1,70 +1,94 @@
 <h2 mat-dialog-title>{{ bookDetail.volumeInfo.title }}</h2>
 <mat-dialog-content class="mat-typography">
   <div
-  class="cover"
-  style="
+    class="cover"
+    style="
   float: right">
-  <img
-    src="{{
+    <img
+      src="{{
       bookDetail.volumeInfo.imageLinks.thumbnail.replace(
         '=curl&source=gbs_api',
         ''
       )
     }}"
-    alt=""
-    *ngIf="bookDetail.volumeInfo.imageLinks"
-  />
-  <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/387928/book%20placeholder.png"
-  *ngIf="!bookDetail.volumeInfo.imageLinks">
-  <br>
-  <div style="text-align: center;">
-    <button mat-button (click)="onPreview(bookDetail.volumeInfo.previewLink)" [disabled]="bookDetail.volumeInfo.previewLink ? false:true">Preview</button>
-    <button mat-button (click)="onBuy(bookDetail.volumeInfo.infoLink)" [disabled]="bookDetail.volumeInfo.infoLink ? false:true">Buy</button>
-  </div>
+      alt=""
+      *ngIf="bookDetail.volumeInfo.imageLinks"
+    />
+    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/387928/book%20placeholder.png"
+         *ngIf="!bookDetail.volumeInfo.imageLinks">
+    <br>
 
-</div>
-<div>
-  <h4
-  class="bookDescription"
-  id="description"
-  *ngIf="bookDetail.volumeInfo.description"
-  >
-    {{ showDescription ? shortDescription + secondPartDescription : shortDescription }}
-    <span id="dots" *ngIf="descriptionLength>400">...</span><span id="more">
+    <div style="text-align: center" *ngIf="descriptionLength > 400">
+      <button mat-raised-button (click)="onPreview(bookDetail.volumeInfo.previewLink)"
+              [disabled]="bookDetail.volumeInfo.previewLink ? false:true">Preview
+      </button>
+      |
+      <button mat-raised-button (click)="onBuy(bookDetail.volumeInfo.infoLink)"
+              [disabled]="bookDetail.volumeInfo.infoLink ? false:true">Buy
+      </button>
+    </div>
+
+    <!--div style="text-align: center" *ngIf="descriptionLength < 400" >
+      <button mat-raised-button (click)="onPreview(bookDetail.volumeInfo.previewLink)" [disabled]="bookDetail.volumeInfo.previewLink ? false:true">Preview</button>
+      |
+      <button mat-raised-button (click)="onBuy(bookDetail.volumeInfo.infoLink)" [disabled]="bookDetail.volumeInfo.infoLink ? false:true">Buy</button>
+      <br><br>
+    </div-->
+
+  </div>
+  <div>
+    <h4
+      class="bookDescription"
+      id="longDescription"
+      *ngIf="bookDetail.volumeInfo.description && descriptionLength > 400"
+    >
+      {{ showDescription ? shortDescription + secondPartDescription : shortDescription }}
+      <span id="dots" *ngIf="descriptionLength>400">...</span><span id="more">
 
   </span></h4>
-  <button mat-raised-button color="primary" (click) = "onShowDescription()" id="showDescription" *ngIf="bookDetail.volumeInfo.description && descriptionLength>400">Read more</button>
-  <br><br>
-  <h4 *ngIf="bookDetail.volumeInfo.authors">Characteristics</h4>
-  <table>
-    <tr *ngIf="bookDetail.volumeInfo.authors">
-      <td>Author</td>
-      <td>{{ bookDetail.volumeInfo.authors.toString().replace(',', ', ') }}</td>
-    </tr>
-    <tr *ngIf="bookDetail.volumeInfo.publisher">
-      <td>Publisher</td>
-      <td>{{bookDetail.volumeInfo.publisher}}</td>
-    </tr>
-    <tr *ngIf="bookDetail.volumeInfo.ratingsCount">
-      <td>Rating Count</td>
-      <td>{{bookDetail.volumeInfo.ratingsCount}}</td>
-    </tr>
-    <tr *ngIf="bookDetail.volumeInfo.averageRating">
-      <td>Rating</td>
-      <td>{{bookDetail.volumeInfo.averageRating}}</td>
-    </tr>
-    <tr *ngIf="bookDetail.volumeInfo.categories">
-      <td>Categories</td>
-      <td>{{bookDetail.volumeInfo.categories.toString()}}</td>
-    </tr>
-    <tr *ngIf="bookDetail.volumeInfo.publishedDate">
-      <td>Publish Date</td>
-      <td>{{bookDetail.volumeInfo.publishedDate}}</td>
-    </tr>
-  </table>
-</div>
-</mat-dialog-content>
 
+    <h4
+      class="bookDescription"
+      id="shortDescription"
+      *ngIf="bookDetail.volumeInfo.description && descriptionLength < 400">
+      {{bookDetail.volumeInfo.description.toString()}}
+    </h4>
+
+    <button mat-raised-button color="primary" (click)="onShowDescription()" id="showDescription"
+            *ngIf="bookDetail.volumeInfo.description && descriptionLength>400">Read more
+    </button>
+    <br><br>
+    <h4 *ngIf="bookDetail.volumeInfo.authors">Characteristics</h4>
+    <table class="characteristics">
+      <tr *ngIf="bookDetail.volumeInfo.authors">
+        <td>Author</td>
+        <td>{{ bookDetail.volumeInfo.authors.toString().replace(',', ', ') }}</td>
+      </tr>
+      <tr *ngIf="bookDetail.volumeInfo.publisher">
+        <td>Publisher</td>
+        <td>{{bookDetail.volumeInfo.publisher}}</td>
+      </tr>
+      <tr *ngIf="bookDetail.volumeInfo.ratingsCount">
+        <td>Rating Count</td>
+        <td>{{bookDetail.volumeInfo.ratingsCount}}</td>
+      </tr>
+      <tr *ngIf="bookDetail.volumeInfo.averageRating">
+        <td>Rating</td>
+        <td>{{bookDetail.volumeInfo.averageRating}}</td>
+      </tr>
+      <tr *ngIf="bookDetail.volumeInfo.categories">
+        <td>Categories</td>
+        <td>{{bookDetail.volumeInfo.categories.toString()}}</td>
+      </tr>
+      <tr *ngIf="bookDetail.volumeInfo.publishedDate">
+        <td>Publish Date</td>
+        <td>{{bookDetail.volumeInfo.publishedDate}}</td>
+      </tr>
+    </table>
+
+  </div>
+</mat-dialog-content>
+<br><br>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancel</button>
   <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button>

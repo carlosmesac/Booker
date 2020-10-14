@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { Book, BooksService } from '../books.service';
+import {Component, Input, OnInit} from '@angular/core';
+import {MatDialog} from '@angular/material/dialog';
+import {Book, BooksService} from '../books.service';
 
 @Component({
   selector: 'app-book-dialog',
@@ -15,7 +15,8 @@ export class BookDialogComponent implements OnInit {
 
   showDescription: boolean = false;
 
-  constructor(private bookService: BooksService) {}
+  constructor(private bookService: BooksService) {
+  }
 
   ngOnInit(): void {
     this.bookDetail = this.bookService.getBookByID(this.bookService.currentID);
@@ -43,9 +44,9 @@ export class BookDialogComponent implements OnInit {
   }
 
   onShowDescription() {
-    var dots = document.getElementById('dots');
-    var moreText = document.getElementById('more');
-    var btnText = document.getElementById('showDescription');
+    let dots = document.getElementById('dots');
+    let moreText = document.getElementById('more');
+    let btnText = document.getElementById('showDescription');
 
     if (dots.style.display === 'none') {
       this.showDescription = false;

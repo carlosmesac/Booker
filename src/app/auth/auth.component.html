@@ -1,5 +1,10 @@
+
+<div class="mySpinner" *ngIf="isLoading">
+  <mat-spinner></mat-spinner>
+</div>
+
 <!--Login Form-->
-<mat-card class="login" *ngIf="isLoginMode">
+<mat-card class="login" *ngIf="isLoginMode && !isLoading">
   <mat-card-content>
     <mat-card-title> Login</mat-card-title>
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
@@ -19,7 +24,7 @@
         />
         <mat-error> Please provide a valid password</mat-error>
       </mat-form-field>
-      <br/>
+      <br>
       <button mat-raised-button color="primary" type="submit">Login</button>
       |
       <button
@@ -34,7 +39,8 @@
 </mat-card>
 
 <!--SignUp Form-->
-<mat-card class="signup" *ngIf="!isLoginMode">
+
+<mat-card class="signup" *ngIf="!isLoginMode && !isLoading">
   <mat-card-title> Sign Up</mat-card-title>
   <mat-vertical-stepper linear #stepper>
     <mat-step [stepControl]="firstSignUpGroup">
