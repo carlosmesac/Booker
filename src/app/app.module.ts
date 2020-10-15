@@ -9,7 +9,6 @@ import { AuthComponent } from './auth/auth.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
-import { SignupComponent } from './auth/signup/signup.component';
 import {MaterialModule} from './material.module';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { BooksComponent } from './books/books.component';
@@ -32,7 +31,6 @@ import { BooksCommentComponent } from './books/books-dialog/books-comment/books-
     HeaderComponent,
     HomeComponent,
     ProfileComponent,
-    SignupComponent,
     BooksComponent,
     BookDialogComponent,
     ShortenPipe,

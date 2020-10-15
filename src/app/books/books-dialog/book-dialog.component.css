@@ -64,3 +64,31 @@
 
 }
 
+.characteristics {
+  font-size: 15px;
+  border-collapse: collapse; /* IE7 and lower */
+  border-spacing: 0;
+  border: black;
+  border-radius: 6px 6px 6px 6px;
+  width: 25%;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+
+}
+
+
+tr:hover {
+  background-color: #b19cd9;
+}
+
+p {
+  font-family: Roboto, Helvetica, sans-serif;
+  font-size: 20px;
+}
+
+
+

@@ -28,12 +28,17 @@
       </button>
     </div>
 
-    <!--div style="text-align: center" *ngIf="descriptionLength < 400" >
-      <button mat-raised-button (click)="onPreview(bookDetail.volumeInfo.previewLink)" [disabled]="bookDetail.volumeInfo.previewLink ? false:true">Preview</button>
+    <div style="text-align: center" *ngIf="descriptionLength < 400">
+      <button mat-raised-button (click)="onPreview(bookDetail.volumeInfo.previewLink)"
+              [disabled]="bookDetail.volumeInfo.previewLink ? false:true">Preview
+      </button>
       |
-      <button mat-raised-button (click)="onBuy(bookDetail.volumeInfo.infoLink)" [disabled]="bookDetail.volumeInfo.infoLink ? false:true">Buy</button>
-      <br><br>
-    </div-->
+      <button mat-raised-button (click)="onBuy(bookDetail.volumeInfo.infoLink)"
+              [disabled]="bookDetail.volumeInfo.infoLink ? false:true">Buy
+      </button>
+      <br>
+      <p></p>
+    </div>
 
   </div>
   <div>
@@ -44,7 +49,6 @@
     >
       {{ showDescription ? shortDescription + secondPartDescription : shortDescription }}
       <span id="dots" *ngIf="descriptionLength>400">...</span><span id="more">
-
   </span></h4>
 
     <h4
@@ -58,7 +62,9 @@
             *ngIf="bookDetail.volumeInfo.description && descriptionLength>400">Read more
     </button>
     <br><br>
-    <h4 *ngIf="bookDetail.volumeInfo.authors">Characteristics</h4>
+
+    <p *ngIf="bookDetail.volumeInfo.authors">Characteristics</p>
+
     <table class="characteristics">
       <tr *ngIf="bookDetail.volumeInfo.authors">
         <td>Author</td>
@@ -88,8 +94,7 @@
 
   </div>
 </mat-dialog-content>
-<br><br>
 <mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button>
+  <button mat-raised-button color="accent" mat-dialog-close>Cancel</button>
+  <button mat-raised-button color="primary" [mat-dialog-close]="true" cdkFocusInitial>Comment</button>
 </mat-dialog-actions>
