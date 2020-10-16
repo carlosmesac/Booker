@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit, ViewChild, ComponentFactoryResolver } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AuthService} from '../auth/auth.service';
@@ -8,6 +8,9 @@ import {
 } from '@angular/material/stepper';
 import {HeaderComponent} from '../header/header.component';
 import {emailVerified} from '@angular/fire/auth-guard';
+import { Subscription } from 'rxjs';
+import { AlertComponent } from '../shared/alert/alert.component';
+import { PlaceholderDirective } from '../shared/placeholder/placeholder.directive';
 
 @Component({
   selector: 'app-auth',
@@ -26,10 +29,17 @@ export class AuthComponent implements OnInit {
   secondSignUpGroup: FormGroup;
   thirdSignUpGroup: FormGroup;
 
+  error: string = null;
+  private closeSub:Subscription
+  @ViewChild(PlaceholderDirective,{static:false}) alertHost:PlaceholderDirective
+
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private authService: AuthService,
+    private componentFactoryResolver: ComponentFactoryResolver
+
   ) {
   }
 
@@ -55,6 +65,12 @@ export class AuthComponent implements OnInit {
         Validators.minLength(6),
       ]),
     });
+
+    this.authService.error.subscribe(err=>{
+      this.error = err
+    })
+
+
   }
 
   changeMode() {
@@ -84,6 +100,8 @@ export class AuthComponent implements OnInit {
     const success = await this.authService.signUpSync(email, password);
     if (success) {
       this.router.navigate(['home']);
+    }else{
+      this.showErrorAlert(this.error)
     }
   }
 
@@ -94,9 +112,39 @@ export class AuthComponent implements OnInit {
       .loginSync(email, password);
     if (success) {
       this.router.navigate(['home']);
+    }else{
+      this.showErrorAlert(this.error)
     }
 
   }
+
+  onHandleError() {
+    this.error = null;
+  }
+
+  private showErrorAlert(errorMsg: string) {
+    const alertCmpFactory = this.componentFactoryResolver.resolveComponentFactory(
+      AlertComponent
+    );
+
+    const hostViewContainer = this.alertHost.viewContainerRef
+    hostViewContainer.clear()
+    const componentRef = hostViewContainer.createComponent(alertCmpFactory)
+
+    componentRef.instance.message = errorMsg
+    this.closeSub = componentRef.instance.close.subscribe(()=>{
+      this.closeSub.unsubscribe()
+      hostViewContainer.clear()
+    })
+
+  }
+
+  ngOnDestroy(){
+    if(this.closeSub){
+      this.closeSub.unsubscribe()
+    }
+  }
+
 
 
   // onSignUp() {

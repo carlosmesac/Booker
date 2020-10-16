@@ -19,6 +19,8 @@ import {AngularFireModule} from '@angular/fire';
 import { ShortenPipe } from './shared/pipes/shorten.pipe';
 import { BookDialogComponent } from './books/books-dialog/book-dialog.component';
 import { BooksCommentComponent } from './books/books-dialog/books-comment/books-comment.component';
+import { AlertComponent } from './shared/alert/alert.component';
+import { PlaceholderDirective } from './shared/placeholder/placeholder.directive';
 
 
 
@@ -34,7 +36,9 @@ import { BooksCommentComponent } from './books/books-dialog/books-comment/books-
     BooksComponent,
     BookDialogComponent,
     ShortenPipe,
-    BooksCommentComponent
+    BooksCommentComponent,
+    AlertComponent,
+    PlaceholderDirective
   ],
   imports: [
     BrowserModule,

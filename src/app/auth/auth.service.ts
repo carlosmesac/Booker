@@ -11,6 +11,7 @@ import {AngularFireAuth} from '@angular/fire/auth';
 export class AuthService {
 
   loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  error: BehaviorSubject<string> = new BehaviorSubject<string>('');
 
   constructor(private router: Router,
               private fireAuth: AngularFireAuth) {
@@ -32,6 +33,8 @@ export class AuthService {
     } catch (err) {
       console.log(err);
       this.loggedIn.next(false);
+      this.error.next(err.message)
+
       return false;
     }
   }
@@ -44,6 +47,7 @@ export class AuthService {
     } catch (err) {
       console.log(err);
       this.loggedIn.next(false);
+      this.error.next(err.message)
       return false;
     }
   }
@@ -57,6 +61,7 @@ export class AuthService {
     } catch (err) {
       console.log(err);
       this.loggedIn.next(true);
+      this.error.next(err.message)
       return false;
     }
   }
