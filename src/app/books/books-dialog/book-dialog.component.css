@@ -5,6 +5,12 @@
   display: block
 }
 
+
+.cover img:hover {
+
+
+}
+
 .cover p {
   font-family: "Arial Black";
   text-align: center;

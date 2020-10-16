@@ -23,46 +23,71 @@ export class AuthService {
     });
   }
 
-  signUp(email: string, password: string) {
-    return firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password);
-  }
 
-  login(email: string, password: string) {
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password).then(() => {
+  async signUpSync(email: string, password: string): Promise<boolean> {
+    try {
+      await firebase.auth().createUserWithEmailAndPassword(email, password);
       this.loggedIn.next(true);
-      this.router.navigate(['home']);
-    }).catch(errorMessage => {
-      console.log(errorMessage);
+      return true;
+    } catch (err) {
+      console.log(err);
       this.loggedIn.next(false);
-    });
+      return false;
+    }
+  }
+
+  async loginSync(email: string, password: string): Promise<boolean> {
+    try {
+      await firebase.auth().signInWithEmailAndPassword(email, password);
+      this.loggedIn.next(true);
+      return true;
+    } catch (err) {
+      console.log(err);
+      this.loggedIn.next(false);
+      return false;
+    }
   }
 
 
-  // async loginSync(email: string, password: string): Promise<boolean> {
-  //   try {
-  //     await firebase.auth().signInWithEmailAndPassword(email, password);
-  //     this.loggedIn.next(true);
-  //     // this.router.navigate(['home']);
-  //     return true;
-  //   } catch (err) {
-  //     console.log(err);
-  //     this.loggedIn.next(false);
-  //     return false;
-  //   }
-  // }
-
-  logout() {
-    return firebase.auth().signOut().then(() => {
+  async logoutSync(): Promise<boolean> {
+    try {
+      await firebase.auth().signOut();
       this.loggedIn.next(false);
-      //this.router.navigate(['auth']);
-
-    });
+      return true;
+    } catch (err) {
+      console.log(err);
+      this.loggedIn.next(true);
+      return false;
+    }
   }
-
-
-
 }
+
+
+// signUp(email: string, password: string) {
+//   return firebase
+//     .auth()
+//     .createUserWithEmailAndPassword(email, password);
+// }
+//
+// login(email: string, password: string) {
+//   firebase
+//     .auth()
+//     .signInWithEmailAndPassword(email, password).then(() => {
+//     this.loggedIn.next(true);
+//     this.router.navigate(['home']);
+//   }).catch(errorMessage => {
+//     console.log(errorMessage);
+//     this.loggedIn.next(false);
+//   });
+
+
+// logout() {
+//   return firebase.auth().signOut().then(() => {
+//     this.loggedIn.next(false);
+//     //this.router.navigate(['auth']);
+//
+//   });
+// }
+
+
+

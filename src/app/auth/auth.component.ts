@@ -7,6 +7,7 @@ import {
   MatVerticalStepper,
 } from '@angular/material/stepper';
 import {HeaderComponent} from '../header/header.component';
+import {emailVerified} from '@angular/fire/auth-guard';
 
 @Component({
   selector: 'app-auth',
@@ -17,7 +18,6 @@ export class AuthComponent implements OnInit {
   form: FormGroup;
   loginInvalid: boolean = false;
   isLoginMode: boolean = true;
-  errorMessage: string = null;
   isLoading: boolean = false;
 
   @ViewChild('stepper', {static: false}) stepper: MatVerticalStepper;
@@ -63,50 +63,67 @@ export class AuthComponent implements OnInit {
 
   onSubmit() {
     if (this.isLoginMode) {
-      this.onLogin();
-      this.isLoading = true;
+      this.onLoginSync();
+      if (this.form.value.valid) {
+        this.isLoading = true;
+      }
+
     } else {
-      this.onSignUp();
-      this.isLoading = true;
+      this.onSignUpSync();
+      if (this.firstSignUpGroup.value.valid && this.secondSignUpGroup.value.valid && this.thirdSignUpGroup.value.valid) {
+        this.isLoading = true;
+      }
 
     }
   }
 
-  onSignUp() {
+
+  async onSignUpSync() {
     const email = this.secondSignUpGroup.get('email').value;
     const password = this.thirdSignUpGroup.get('password').value;
-    this.authService
-      .signUp(email, password)
-      .then((user) => {
-        console.log(user);
-        this.router.navigate(['home']);
-      })
-      .catch((error) => {
-        this.errorMessage = error.message;
-        console.log(this.errorMessage);
-        this.stepper.reset();
-      });
+    const success = await this.authService.signUpSync(email, password);
+    if (success) {
+      this.router.navigate(['home']);
+    }
   }
 
-  onLogin() {
+  async onLoginSync() {
     const email = this.form.get('email').value;
     const password = this.form.get('password').value;
-    this.authService
-      .login(email, password);
+    const success = await this.authService
+      .loginSync(email, password);
+    if (success) {
+      this.router.navigate(['home']);
+    }
 
   }
 
 
+  // onSignUp() {
+  //   const email = this.secondSignUpGroup.get('email').value;
+  //   const password = this.thirdSignUpGroup.get('password').value;
+  //   this.authService
+  //     .signUp(email, password)
+  //     .then((user) => {
+  //       console.log(user);
+  //       this.router.navigate(['home']);
+  //     })
+  //     .catch((error) => {
+  //       this.errorMessage = error.message;
+  //       console.log(this.errorMessage);
+  //       this.stepper.reset();
+  //     });
+  // }
 
-  // async onLoginSync() {
+  // onLogin() {
   //   const email = this.form.get('email').value;
   //   const password = this.form.get('password').value;
-  //   const success = await this.authService
-  //     .loginSync(email, password);
-  //   if (success) {
-  //     this.router.navigate(['home']);
-  //   }
+  //   this.authService
+  //     .login(email, password);
   //
   // }
+  //
+  //
+
 
 }

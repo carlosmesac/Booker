@@ -19,12 +19,20 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.authService.loggedIn.subscribe(value => {
       this.loggedIn = value;
-      this.changeDetector.detectChanges();
     });
   }
 
-  onLogout() {
-    this.authService.logout();
-    this.router.navigate(['auth'])
+  async onLogoutSync() {
+    const success = await this.authService.logoutSync();
+    if (success) {
+      this.router.navigate(['auth']);
+    }
+
   }
+
+
+  // onLogout() {
+  //   this.authService.logout();
+  //   this.router.navigate(['auth'])
+  // }
 }
