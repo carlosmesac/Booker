@@ -91,6 +91,21 @@ tr:hover {
   background-color: #b19cd9;
 }
 
+
+@media only screen and (max-width: 800px) {
+	#unseen table td:nth-child(2),
+	#unseen table th:nth-child(2) {display: none;}
+}
+
+@media only screen and (max-width: 640px) {
+	#unseen table td:nth-child(4),
+	#unseen table th:nth-child(4),
+	#unseen table td:nth-child(7),
+	#unseen table th:nth-child(7),
+	#unseen table td:nth-child(8),
+	#unseen table th:nth-child(8){display: none;}
+}
+
 p {
   font-family: Roboto, Helvetica, sans-serif;
   font-size: 20px;

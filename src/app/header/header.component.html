@@ -1,28 +1,35 @@
 <mat-sidenav-container>
-  <mat-sidenav #sidenav role="navigation">
-    <!-- <mat-nav-list>
-      <a mat-list-item>
-        <mat-icon class="icon">input</mat-icon>
-        <span class="label">Login</span>
-      </a>
-      <a mat-list-item>
-        <mat-icon class="icon">home</mat-icon>
-        <span class="label">Home</span>
-      </a>
-      <a mat-list-item>
-        <mat-icon class="icon">dashboard</mat-icon>
-        <span class="label">Dashboard</span>
-      </a>
-      <a  mat-list-item type="button">
-        <mat-icon class="icon">input</mat-icon>
-        <span class="label">LogOut</span>
-      </a>
-    </mat-nav-list> -->
+  <mat-sidenav #sidenav role="navigation" mode="side">
+     <mat-nav-list>
+        <a routerLink="/home" (click)="sidenav.toggle()">
+          <mat-icon  class="mobileIcon">home</mat-icon>
+          <span class="mobileLabel">Home</span>
+
+        </a>
+
+        <a routerLink="/books" (click)="sidenav.toggle()">
+          <mat-icon class="mobileIcon">local_library</mat-icon>
+          <span class="mobileLabel">Books</span>
+        </a>
+        <a routerLink="/profile" (click)="sidenav.toggle()">
+          <mat-icon class="mobileIcon">person</mat-icon>
+          <span class="mobileLabel">Profile</span>
+        </a>
+        <a routerLink="/auth" *ngIf="!loggedIn"(click)="sidenav.toggle()">
+          <mat-icon class="mobileIcon">input</mat-icon>
+          <span class="mobileLabel">Login</span>
+        </a>
+        <a (click)="onLogoutSync()"  *ngIf="loggedIn" (click)="sidenav.toggle()">
+          <mat-icon class="mobileIcon">input</mat-icon>
+          <span class="mobileLabel">Logout</span>
+        </a>
+    </mat-nav-list>
   </mat-sidenav>
+
   <mat-sidenav-content>
     <mat-toolbar color="primary">
       <div fxHide.gt-xs>
-        <button mat-icon-button>
+        <button mat-icon-button (click)="sidenav.toggle()">
           <mat-icon>menu</mat-icon>
         </button>
       </div>
