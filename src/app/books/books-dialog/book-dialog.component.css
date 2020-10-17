@@ -25,9 +25,7 @@
 
 }
 
-.characteristics {
 
-}
 
 
 #more {
@@ -89,6 +87,17 @@ th, td {
 
 tr:hover {
   background-color: #b19cd9;
+}
+
+#title{
+  font-family: Roboto, Helvetica, sans-serif;
+  font-size: 20px;
+  text-align: center;
+
+}
+
+#title:hover{
+  background-color: white;
 }
 
 

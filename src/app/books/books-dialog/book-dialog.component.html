@@ -63,9 +63,10 @@
     </button>
     <br><br>
 
-    <p *ngIf="bookDetail.volumeInfo.authors">Characteristics</p>
+    <!--p *ngIf="bookDetail.volumeInfo.authors">Characteristics</p-->
 
-    <table class="characteristics">
+    <table  class="characteristics" *ngIf="bookDetail.volumeInfo.authors">
+      <tr id="title"> Characteristics</tr>
       <tr *ngIf="bookDetail.volumeInfo.authors">
         <td>Author</td>
         <td>{{ bookDetail.volumeInfo.authors.toString().replace(',', ', ') }}</td>

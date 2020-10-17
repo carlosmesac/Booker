@@ -33,7 +33,7 @@ export class AuthService {
     } catch (err) {
       console.log(err);
       this.loggedIn.next(false);
-      this.error.next(err.message)
+      this.error.next(err.message);
 
       return false;
     }
@@ -47,7 +47,7 @@ export class AuthService {
     } catch (err) {
       console.log(err);
       this.loggedIn.next(false);
-      this.error.next(err.message)
+      this.error.next(err.message);
       return false;
     }
   }
@@ -61,7 +61,7 @@ export class AuthService {
     } catch (err) {
       console.log(err);
       this.loggedIn.next(true);
-      this.error.next(err.message)
+      this.error.next(err.message);
       return false;
     }
   }

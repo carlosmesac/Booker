@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ComponentFactoryResolver } from '@angular/core';
+import {Component, OnInit, ViewChild, ComponentFactoryResolver} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AuthService} from '../auth/auth.service';
@@ -8,9 +8,9 @@ import {
 } from '@angular/material/stepper';
 import {HeaderComponent} from '../header/header.component';
 import {emailVerified} from '@angular/fire/auth-guard';
-import { Subscription } from 'rxjs';
-import { AlertComponent } from '../shared/alert/alert.component';
-import { PlaceholderDirective } from '../shared/placeholder/placeholder.directive';
+import {Subscription} from 'rxjs';
+import {AlertComponent} from '../shared/alert/alert.component';
+import {PlaceholderDirective} from '../shared/placeholder/placeholder.directive';
 
 @Component({
   selector: 'app-auth',
@@ -30,8 +30,8 @@ export class AuthComponent implements OnInit {
   thirdSignUpGroup: FormGroup;
 
   error: string = null;
-  private closeSub:Subscription
-  @ViewChild(PlaceholderDirective,{static:false}) alertHost:PlaceholderDirective
+  private closeSub: Subscription;
+  @ViewChild(PlaceholderDirective, {static: false}) alertHost: PlaceholderDirective;
 
 
   constructor(
@@ -39,7 +39,6 @@ export class AuthComponent implements OnInit {
     private router: Router,
     private authService: AuthService,
     private componentFactoryResolver: ComponentFactoryResolver
-
   ) {
   }
 
@@ -66,9 +65,9 @@ export class AuthComponent implements OnInit {
       ]),
     });
 
-    this.authService.error.subscribe(err=>{
-      this.error = err
-    })
+    this.authService.error.subscribe(err => {
+      this.error = err;
+    });
 
 
   }
@@ -100,8 +99,8 @@ export class AuthComponent implements OnInit {
     const success = await this.authService.signUpSync(email, password);
     if (success) {
       this.router.navigate(['home']);
-    }else{
-      this.showErrorAlert(this.error)
+    } else {
+      this.showErrorAlert(this.error);
     }
   }
 
@@ -112,8 +111,8 @@ export class AuthComponent implements OnInit {
       .loginSync(email, password);
     if (success) {
       this.router.navigate(['home']);
-    }else{
-      this.showErrorAlert(this.error)
+    } else {
+      this.showErrorAlert(this.error);
     }
 
   }
@@ -127,24 +126,23 @@ export class AuthComponent implements OnInit {
       AlertComponent
     );
 
-    const hostViewContainer = this.alertHost.viewContainerRef
-    hostViewContainer.clear()
-    const componentRef = hostViewContainer.createComponent(alertCmpFactory)
+    const hostViewContainer = this.alertHost.viewContainerRef;
+    hostViewContainer.clear();
+    const componentRef = hostViewContainer.createComponent(alertCmpFactory);
 
-    componentRef.instance.message = errorMsg
-    this.closeSub = componentRef.instance.close.subscribe(()=>{
-      this.closeSub.unsubscribe()
-      hostViewContainer.clear()
-    })
+    componentRef.instance.message = errorMsg;
+    this.closeSub = componentRef.instance.close.subscribe(() => {
+      this.closeSub.unsubscribe();
+      hostViewContainer.clear();
+    });
 
   }
 
-  ngOnDestroy(){
-    if(this.closeSub){
-      this.closeSub.unsubscribe()
+  ngOnDestroy() {
+    if (this.closeSub) {
+      this.closeSub.unsubscribe();
     }
   }
-
 
 
   // onSignUp() {
