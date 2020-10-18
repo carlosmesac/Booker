@@ -22,15 +22,18 @@ export class BookDialogComponent implements OnInit {
     this.bookDetail = this.bookService.getBookByID(this.bookService.currentID);
     console.log(this.bookDetail);
 
-    this.shortDescription = this.bookDetail.volumeInfo.description.substring(
-      0,
-      400
-    );
-    this.descriptionLength = this.bookDetail.volumeInfo.description.length;
-    this.secondPartDescription = this.bookDetail.volumeInfo.description.substring(
-      400,
-      this.descriptionLength
-    );
+    if(this.bookDetail.volumeInfo.description){
+      this.shortDescription = this.bookDetail.volumeInfo.description.substring(
+        0,
+        400
+      );
+      this.descriptionLength = this.bookDetail.volumeInfo.description.length;
+      this.secondPartDescription = this.bookDetail.volumeInfo.description.substring(
+        400,
+        this.descriptionLength
+      );
+
+    }
 
 
   }

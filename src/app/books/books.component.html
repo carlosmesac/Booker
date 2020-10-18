@@ -13,6 +13,7 @@
     </button>
   </mat-form-field>
 </div>
+<app-book-spinner *ngIf="searching"></app-book-spinner>
 
 <div id="list-th" fxLayout="row wrap" >
   <div *ngFor="let book of books; let i = index"

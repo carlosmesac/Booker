@@ -65,4 +65,8 @@ export class BooksService {
   setCurrentID(id: number) {
     this.currentID = id;
   }
+
+  getLastBook(){
+    return this.getBookByID(this.currentID)
+  }
 }

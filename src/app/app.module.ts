@@ -21,6 +21,7 @@ import { BookDialogComponent } from './books/books-dialog/book-dialog.component'
 import { BooksCommentComponent } from './books/books-dialog/books-comment/books-comment.component';
 import { AlertComponent } from './shared/alert/alert.component';
 import { PlaceholderDirective } from './shared/placeholder/placeholder.directive';
+import { BookSpinnerComponent } from './shared/book-spinner/book-spinner.component';
 
 
 
@@ -38,7 +39,8 @@ import { PlaceholderDirective } from './shared/placeholder/placeholder.directive
     ShortenPipe,
     BooksCommentComponent,
     AlertComponent,
-    PlaceholderDirective
+    PlaceholderDirective,
+    BookSpinnerComponent
   ],
   imports: [
     BrowserModule,
