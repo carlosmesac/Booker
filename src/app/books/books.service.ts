@@ -1,7 +1,8 @@
-import {HttpClient} from '@angular/common/http';
-import {Injectable} from '@angular/core';
-import {Observable, Subject} from 'rxjs';
-import {map} from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { AuthService } from '../auth/auth.service';
 
 export type Book = {
   id: string;
@@ -11,14 +12,14 @@ export type Book = {
     language: string;
     authors: string[];
     publisher: string;
-    categories:string[];
+    categories: string[];
     publishedDate: string;
     previewLink: string;
     infoLink: string;
-    industryIdentifiers:{
-      type:string;
-      indentifier:string;
-    }[]
+    industryIdentifiers: {
+      type: string;
+      indentifier: string;
+    }[];
     description: string;
     averageRating: number;
     ratingsCount: number;
@@ -33,15 +34,13 @@ export type Book = {
   providedIn: 'root',
 })
 export class BooksService {
-
   books: Book[] = [];
   booksChanged = new Subject<Book[]>();
   currentID: number;
 
   private API = 'https://www.googleapis.com/books/v1/volumes';
 
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
   search(query: string): Observable<Book[]> {
     return this.http
@@ -66,7 +65,13 @@ export class BooksService {
     this.currentID = id;
   }
 
-  getLastBook(){
-    return this.getBookByID(this.currentID)
+  getLastBook() {
+    return this.getBookByID(this.currentID);
+  }
+
+  postComment(liked: boolean, comment: string) {
+    console.log(    this.authService.getUID()
+    );
+
   }
 }
