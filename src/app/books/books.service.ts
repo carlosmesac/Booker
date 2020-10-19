@@ -3,6 +3,10 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AuthService } from '../auth/auth.service';
+import {AngularFireAuth} from '@angular/fire/auth';
+import { AngularFireDatabase } from '@angular/fire/database';
+import { Comment } from './comment.model';
+
 
 export type Book = {
   id: string;
@@ -40,7 +44,12 @@ export class BooksService {
 
   private API = 'https://www.googleapis.com/books/v1/volumes';
 
-  constructor(private http: HttpClient, private authService: AuthService) {}
+  constructor(private http: HttpClient,
+    private authService: AuthService,
+    private fireDB: AngularFireDatabase) {
+
+
+    }
 
   search(query: string): Observable<Book[]> {
     return this.http
@@ -70,8 +79,21 @@ export class BooksService {
   }
 
   postComment(liked: boolean, comment: string) {
-    console.log(    this.authService.getUID()
-    );
+    const thumbnail = this.getLastBook().volumeInfo.imageLinks.thumbnail
+    const title = this.getLastBook().volumeInfo.title;
+    const publishComment = new Comment(thumbnail,title,liked,comment)
+    const date =  Date.now();
+    const userCommentRef = this.fireDB.object(this.authService.getUID()+"/comments/"+date)
+    userCommentRef.set({comment: publishComment})
+
+
+    // FETCH DATA
+    const itemRef = this.fireDB.object("/");
+    itemRef.snapshotChanges().subscribe(action => {
+      console.log(action.type);
+      console.log(action.key)
+      console.log(action.payload.val())
+    });
 
   }
 }
