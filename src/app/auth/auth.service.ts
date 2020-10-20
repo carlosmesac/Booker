@@ -4,6 +4,7 @@ import 'firebase/auth';
 import {BehaviorSubject} from 'rxjs';
 import {Router} from '@angular/router';
 import {AngularFireAuth} from '@angular/fire/auth';
+import { AngularFireDatabase } from '@angular/fire/database';
 
 @Injectable({
   providedIn: 'root',
@@ -13,10 +14,12 @@ export class AuthService {
   loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   error: BehaviorSubject<string> = new BehaviorSubject<string>('');
   uid: BehaviorSubject<string> = new BehaviorSubject<string>('');
-  currentUser:string = null
+  currentID: string = ''
 
   constructor(private router: Router,
-              private fireAuth: AngularFireAuth) {
+              private fireAuth: AngularFireAuth,
+              private fireDB: AngularFireDatabase,
+              ) {
 
     this.fireAuth.onAuthStateChanged(user => {
       if (user) {
@@ -28,10 +31,13 @@ export class AuthService {
   }
 
 
-  async signUpSync(email: string, password: string): Promise<boolean> {
+  async signUpSync(username: string, email: string, password: string): Promise<boolean> {
     try {
-      await firebase.auth().createUserWithEmailAndPassword(email, password);
+      const newUser = await firebase.auth().createUserWithEmailAndPassword(email, password);
+      this.currentID = newUser.user.uid;
+      this.postUser(username, this.currentID, email);
       this.loggedIn.next(true);
+
       return true;
     } catch (err) {
       console.log(err);
@@ -71,12 +77,20 @@ export class AuthService {
   }
 
   setUID(UID:string){
-    this.currentUser = UID
+    this.currentID = UID
   }
   getUID(){
-    return this.currentUser;
+    return this.currentID;
   }
 
+  postUser(userProfileName: string ,userProfileID:string, email:string){
+    const creationDate = new Date();
+    const currentDate = creationDate.getFullYear()+'-'+(creationDate.getMonth()+1)+'-'+creationDate.getDate();
+    const usernameRef = this.fireDB.object('users/' + this.currentID)
+    usernameRef.set({username: userProfileName, userid: userProfileID, email: email, creationDate: currentDate})
+
+  }
+ //asdasd
 
 }
 

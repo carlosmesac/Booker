@@ -76,15 +76,15 @@ export class AuthComponent implements OnInit {
     this.isLoginMode = !this.isLoginMode;
   }
 
-  onSubmit() {
+ async onSubmit() {
     if (this.isLoginMode) {
-      this.onLoginSync();
+    await  this.onLoginSync();
       if (this.form.value.valid) {
         this.isLoading = true;
       }
 
     } else {
-      this.onSignUpSync();
+     await this.onSignUpSync();
       if (this.firstSignUpGroup.value.valid && this.secondSignUpGroup.value.valid && this.thirdSignUpGroup.value.valid) {
         this.isLoading = true;
       }
@@ -94,9 +94,10 @@ export class AuthComponent implements OnInit {
 
 
   async onSignUpSync() {
+    const username = this.firstSignUpGroup.get('username').value;
     const email = this.secondSignUpGroup.get('email').value;
     const password = this.thirdSignUpGroup.get('password').value;
-    const success = await this.authService.signUpSync(email, password);
+    const success = await this.authService.signUpSync(username , email, password);
     if (success) {
       this.router.navigate(['home']);
     } else {
