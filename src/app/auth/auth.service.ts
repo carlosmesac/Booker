@@ -87,7 +87,7 @@ export class AuthService {
     const creationDate = new Date();
     const currentDate = creationDate.getFullYear()+'-'+(creationDate.getMonth()+1)+'-'+creationDate.getDate();
     const usernameRef = this.fireDB.object('users/' + this.currentID)
-    usernameRef.set({username: userProfileName, userid: userProfileID, email: email, creationDate: currentDate})
+    usernameRef.set({username: userProfileName, userID: userProfileID, email: email, creationDate: currentDate})
 
   }
  //asdasd

@@ -94,12 +94,13 @@ export class BooksService {
       ID: ID
     });
 
-    // FETCH DATA
-    const itemRef = this.fireDB.object('/');
-    itemRef.snapshotChanges().subscribe((action) => {
-      console.log(action.type);
-      console.log(action.key);
-      console.log(action.payload.val());
-    });
+  //   // FETCH ALL DATA
+  //   const itemRef = this.fireDB.object('/');
+  //   itemRef.snapshotChanges().subscribe((action) => {
+  //     console.log(action.type);
+  //     console.log(action.key);
+  //     console.log(action.payload.val());
+  //   });
+  // }
   }
 }

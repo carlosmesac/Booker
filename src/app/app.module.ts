@@ -22,6 +22,7 @@ import { BooksCommentComponent } from './books/books-dialog/books-comment/books-
 import { AlertComponent } from './shared/alert/alert.component';
 import { PlaceholderDirective } from './shared/placeholder/placeholder.directive';
 import { BookSpinnerComponent } from './shared/book-spinner/book-spinner.component';
+import { ProfileService } from './profile/profile.service';
 
 
 
