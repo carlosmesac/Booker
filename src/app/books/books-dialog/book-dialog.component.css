@@ -59,7 +59,7 @@
   border-radius: 10px;
 
   /* -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3); */
-  background-color: purple;
+  background-color: #673ab7;
 }
 
 #shortDescription {
@@ -82,6 +82,7 @@ th, td {
   text-align: left;
   border-bottom: 1px solid #ddd;
 
+
 }
 
 
@@ -91,13 +92,14 @@ tr:hover {
 
 #title{
   font-family: Roboto, Helvetica, sans-serif;
-  font-size: 20px;
+  font-size: 18px;
   text-align: center;
+
 
 }
 
 #title:hover{
-  background-color: white;
+  background-color: #b19cd9;
 }
 
 

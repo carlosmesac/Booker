@@ -22,7 +22,7 @@ export class BookDialogComponent implements OnInit {
     this.bookDetail = this.bookService.getBookByID(this.bookService.currentID);
     console.log(this.bookDetail);
 
-    if(this.bookDetail.volumeInfo.description){
+    if (this.bookDetail.volumeInfo.description) {
       this.shortDescription = this.bookDetail.volumeInfo.description.substring(
         0,
         400
