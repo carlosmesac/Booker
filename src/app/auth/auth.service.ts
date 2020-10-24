@@ -14,7 +14,8 @@ export class AuthService {
   loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   error: BehaviorSubject<string> = new BehaviorSubject<string>('');
   uid: BehaviorSubject<string> = new BehaviorSubject<string>('');
-  currentID: string = ''
+  currentID2: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  currentID: string;
 
   constructor(private router: Router,
               private fireAuth: AngularFireAuth,
@@ -25,6 +26,7 @@ export class AuthService {
       if (user) {
         console.log(user);
         this.setUID(user.uid)
+        this.currentID2.next(user.uid)
         this.loggedIn.next(true);
       }
     });
@@ -79,6 +81,7 @@ export class AuthService {
   setUID(UID:string){
     this.currentID = UID
   }
+
   getUID(){
     return this.currentID;
   }

@@ -2,9 +2,10 @@ import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {HomeComponent} from './home/home.component';
 import {AuthComponent} from './auth/auth.component';
-import {ProfileComponent} from './profile/profile.component';
+import { ProfileComponent } from './profile/profile.component';
 import {BooksComponent} from './books/books.component';
 import {AuthGuard} from './auth/auth.guard';
+import { ProfileEditComponent } from './profile/profile-edit/profile-edit.component';
 
 const routes: Routes = [
 
@@ -24,7 +25,11 @@ const routes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard], children: [
+      {path:':uid',component: ProfileComponent},
+      {path:':uid/edit',component: ProfileEditComponent}
+
+    ]
   }
 
 

@@ -14,4 +14,11 @@ export class ProfileService {
       })
       .valueChanges();
   }
+
+  getUser(UID:string){
+    return this.fireDB
+    .object('users/'+ UID)
+    .valueChanges();
+
+  }
 }

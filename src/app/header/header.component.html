@@ -1,28 +1,27 @@
 <mat-sidenav-container>
   <mat-sidenav #sidenav role="navigation" mode="side">
-     <mat-nav-list>
-        <a routerLink="/home" (click)="sidenav.toggle()">
-          <mat-icon  class="mobileIcon">home</mat-icon>
-          <span class="mobileLabel">Home</span>
+    <mat-nav-list>
+      <a routerLink="/home" (click)="sidenav.toggle()">
+        <mat-icon class="mobileIcon">home</mat-icon>
+        <span class="mobileLabel">Home</span>
+      </a>
 
-        </a>
-
-        <a routerLink="/books" (click)="sidenav.toggle()">
-          <mat-icon class="mobileIcon">local_library</mat-icon>
-          <span class="mobileLabel">Books</span>
-        </a>
-        <a routerLink="/profile" (click)="sidenav.toggle()">
-          <mat-icon class="mobileIcon">person</mat-icon>
-          <span class="mobileLabel">Profile</span>
-        </a>
-        <a routerLink="/auth" *ngIf="!loggedIn"(click)="sidenav.toggle()">
-          <mat-icon class="mobileIcon">input</mat-icon>
-          <span class="mobileLabel">Login</span>
-        </a>
-        <a (click)="onLogoutSync()"  *ngIf="loggedIn" (click)="sidenav.toggle()">
-          <mat-icon class="mobileIcon">input</mat-icon>
-          <span class="mobileLabel">Logout</span>
-        </a>
+      <a routerLink="/books" (click)="sidenav.toggle()">
+        <mat-icon class="mobileIcon">local_library</mat-icon>
+        <span class="mobileLabel">Books</span>
+      </a>
+      <a [routerLink]="['/profile']" [queryParams]="{ uid: currentUID }">
+        <mat-icon class="mobileIcon">person</mat-icon>
+        <span class="mobileLabel">Profile</span>
+      </a>
+      <a routerLink="/auth" *ngIf="!loggedIn" (click)="sidenav.toggle()">
+        <mat-icon class="mobileIcon">input</mat-icon>
+        <span class="mobileLabel">Login</span>
+      </a>
+      <a (click)="onLogoutSync()" *ngIf="loggedIn" (click)="sidenav.toggle()">
+        <mat-icon class="mobileIcon">input</mat-icon>
+        <span class="mobileLabel">Logout</span>
+      </a>
     </mat-nav-list>
   </mat-sidenav>
 
@@ -51,7 +50,7 @@
             </a>
           </li>
           <li>
-            <a routerLink="/profile">
+            <a [routerLink]="['/profile']" [queryParams]="{ uid: currentUID }">
               <mat-icon class="icon">person</mat-icon>
               <span class="label">Profile</span>
             </a>

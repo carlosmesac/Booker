@@ -23,6 +23,7 @@ import { AlertComponent } from './shared/alert/alert.component';
 import { PlaceholderDirective } from './shared/placeholder/placeholder.directive';
 import { BookSpinnerComponent } from './shared/book-spinner/book-spinner.component';
 import { ProfileService } from './profile/profile.service';
+import { ProfileEditComponent } from './profile/profile-edit/profile-edit.component';
 
 
 
@@ -41,7 +42,8 @@ import { ProfileService } from './profile/profile.service';
     BooksCommentComponent,
     AlertComponent,
     PlaceholderDirective,
-    BookSpinnerComponent
+    BookSpinnerComponent,
+    ProfileEditComponent
   ],
   imports: [
     BrowserModule,

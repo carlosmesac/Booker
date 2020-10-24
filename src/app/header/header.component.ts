@@ -1,6 +1,7 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {AuthService} from '../auth/auth.service';
-import {Router} from '@angular/router';
+import { Router, Params, ActivatedRoute } from '@angular/router';
+import { query } from '@angular/animations';
 
 @Component({
   selector: 'app-header',
@@ -10,9 +11,11 @@ import {Router} from '@angular/router';
 export class HeaderComponent implements OnInit {
 
   loggedIn: boolean = false;
+  currentUID : string;
 
   constructor(private authService: AuthService,
               private changeDetector: ChangeDetectorRef,
+              private route:ActivatedRoute,
               private router: Router) {
   }
 
@@ -20,6 +23,10 @@ export class HeaderComponent implements OnInit {
     this.authService.loggedIn.subscribe(value => {
       this.loggedIn = value;
     });
+    this.authService.currentID2.subscribe(uid => {
+      this.currentUID = uid
+
+    })
   }
 
   async onLogoutSync() {
@@ -28,9 +35,16 @@ export class HeaderComponent implements OnInit {
       this.router.navigate(['auth']);
     }
 
+
   }
 
 
+  userRouting(){
+    console.log(this.currentUID);
+
+    this.router.navigate(["profile"], {relativeTo: this.route, queryParams: {uid:this.currentUID}, queryParamsHandling: 'merge'})
+
+  }
   // onLogout() {
   //   this.authService.logout();
   //   this.router.navigate(['auth'])
