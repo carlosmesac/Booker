@@ -77,7 +77,7 @@ export class BooksService {
   }
 
   postComment(liked: boolean, comment: string) {
-    const thumbnail = this.getLastBook().volumeInfo.imageLinks.thumbnail;
+    const thumbnail = this.getLastBook().volumeInfo.imageLinks.thumbnail.replace('=curl&source=gbs_api','')  ;
     const title = this.getLastBook().volumeInfo.title;
     const date = Date.now();
     const ID = this.fireDB.createPushId();

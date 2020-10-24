@@ -1,5 +1,5 @@
-<div style="display: flex; border: solid;">
-  <div style="border:solid">
+<div style="display: flex">
+  <div>
     <div class="card-container">
       <div class="upper-container">
         <div class="image-container">
@@ -26,7 +26,19 @@
     </div>
   </div>
 
-  <div style="border:solid">
-    <p>{{userComments[0].comment}}</p>
-  </div>
-</div>
+  <div>
+    <div id="list-th" fxLayout="row wrap">
+        <div
+          *ngFor="let comment of userComments; let i = index"
+          [fxFlex]="userComments.length <=2 ? 100 / 2 + '%' : 100 / 4 + '%'"
+          fxFlex.xs="100%"
+          fxFlex.sm="33%"
+        >
+          <div class="book read">
+            <div class="cover">
+              <img src="{{ comment.thumbnail }}" alt="" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
