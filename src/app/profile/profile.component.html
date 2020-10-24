@@ -26,7 +26,7 @@
     </div>
   </div>
 
-  <div style="border:solid">
-    <p>{{userComments[0].comment}}</p>
+  <div style="border:solid" *ngFor="let comments of userComments">
+    <p>{{comments.comment}}</p>
   </div>
 </div>

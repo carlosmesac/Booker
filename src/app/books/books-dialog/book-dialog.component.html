@@ -66,29 +66,38 @@
     <!--p *ngIf="bookDetail.volumeInfo.authors">Characteristics</p-->
 
     <table  class="characteristics" *ngIf="bookDetail.volumeInfo.authors">
-      <tr id="title"> Characteristics</tr>
+      <tr id=""> </tr>
+      <td></td>
+      <td id="title"> Characteristics</td>
+      <td></td>
       <tr *ngIf="bookDetail.volumeInfo.authors">
         <td>Author</td>
+        <td></td>
         <td>{{ bookDetail.volumeInfo.authors.toString().replace(',', ', ') }}</td>
       </tr>
       <tr *ngIf="bookDetail.volumeInfo.publisher">
         <td>Publisher</td>
+        <td></td>
         <td>{{bookDetail.volumeInfo.publisher}}</td>
       </tr>
       <tr *ngIf="bookDetail.volumeInfo.ratingsCount">
         <td>Rating Count</td>
+        <td></td>
         <td>{{bookDetail.volumeInfo.ratingsCount}}</td>
       </tr>
       <tr *ngIf="bookDetail.volumeInfo.averageRating">
         <td>Rating</td>
+        <td></td>
         <td>{{bookDetail.volumeInfo.averageRating}}</td>
       </tr>
       <tr *ngIf="bookDetail.volumeInfo.categories">
         <td>Categories</td>
+        <td></td>
         <td>{{bookDetail.volumeInfo.categories.toString()}}</td>
       </tr>
       <tr *ngIf="bookDetail.volumeInfo.publishedDate">
         <td>Publish Date</td>
+        <td></td>
         <td>{{bookDetail.volumeInfo.publishedDate}}</td>
       </tr>
     </table>
