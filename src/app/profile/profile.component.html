@@ -25,20 +25,39 @@
       </div>
     </div>
   </div>
+</div>
+<div>
+  <div id="list-th" fxLayout="row wrap">
+    <div
+      *ngFor="let comment of userComments; let i = index"
+      [fxFlex]="userComments.length <= 2 ? 100 / 2 + '%' : 100 / 4 + '%'"
+      fxFlex.xs="100%"
+      fxFlex.sm="33%"
+    >
+      <div class="book">
+        <div class="cover">
+          <button
+            mat-fab
+            class="like"
+            color="primary"
+            *ngIf="comment.liked"
+            aria-label="Example icon button with a home icon"
+          >
+            <mat-icon style="justify-content: center">thumb_up</mat-icon>
+          </button>
 
-  <div>
-    <div id="list-th" fxLayout="row wrap">
-        <div
-          *ngFor="let comment of userComments; let i = index"
-          [fxFlex]="userComments.length <=2 ? 100 / 2 + '%' : 100 / 4 + '%'"
-          fxFlex.xs="100%"
-          fxFlex.sm="33%"
+          <button
+          mat-fab
+          class="dislike"
+          color="warn"
+          *ngIf="!comment.liked"
+          aria-label="Example icon button with a home icon"
         >
-          <div class="book read">
-            <div class="cover">
-              <img src="{{ comment.thumbnail }}" alt="" />
-            </div>
-          </div>
+          <mat-icon style="justify-content: center">thumb_down</mat-icon>
+        </button>
+          <img src="{{ comment.thumbnail }}" alt="" />
         </div>
       </div>
     </div>
+  </div>
+</div>

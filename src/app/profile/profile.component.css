@@ -76,17 +76,44 @@ h4 {
 
 .book {
   display: inline-block;
-  width: 250px;
-  height: 390px;
+  width: 240px;
+  height: 397px;
   box-shadow: 0 0 20px rgb(206, 206, 206);
   margin: 25px;
+  border: solid black;
   padding: 10px 10px 0 10px;
   vertical-align: top;
   border-radius: 10px;
   transition: height 1s;
   margin-left: 20%;
-  background-color: #673ab7;
+  position: relative;
+  background: linear-gradient(to bottom, #673ab7 40%,  #906bcf 100%);
+
 }
+
+.like {
+  position: absolute;
+  bottom: 0%;
+  right: 0%;
+  border: solid;
+}
+
+
+.dislike {
+  position: absolute;
+  bottom: 0%;
+  right: 0%;
+  border: solid;
+}
+
+/* .like {
+  background: linear-gradient(to bottom, #77DD77 60%,#9ec5ff,90%, #673ab7 100%);
+}
+
+.dislike {
+  background: linear-gradient(to bottom, #df3d4a 60%,#e461e4,90%, #673ab7 100%);
+} */
+
 
 .cover {
   /* border: 5px solid white; */
@@ -94,10 +121,12 @@ h4 {
 }
 
 .cover img {
-  width: 250px;
-  height: 375px;
-  border-radius: 5px;
-}
+  max-width: 240px;
+  height: 385px;
+  border-radius: 10px;
+  cursor: pointer;
+ }
+
 
 .book p {
   margin-top: 12px;
