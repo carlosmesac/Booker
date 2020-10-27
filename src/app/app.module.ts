@@ -24,6 +24,7 @@ import {PlaceholderDirective} from './shared/placeholder/placeholder.directive';
 import {BookSpinnerComponent} from './shared/book-spinner/book-spinner.component';
 import {ProfileService} from './profile/profile.service';
 import {ProfileEditComponent} from './profile/profile-edit/profile-edit.component';
+import { ProfileDialogComponent } from './profile/profile-dialog/profile-dialog.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import {ProfileEditComponent} from './profile/profile-edit/profile-edit.componen
     AlertComponent,
     PlaceholderDirective,
     BookSpinnerComponent,
-    ProfileEditComponent
+    ProfileEditComponent,
+    ProfileDialogComponent
   ],
   imports: [
     BrowserModule,
