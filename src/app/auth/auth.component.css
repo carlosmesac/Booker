@@ -15,7 +15,7 @@ mat-card.signup {
   box-shadow: 2px;
 }
 
-/* .mySpinner{
+.mySpinner {
   position: fixed;
   margin: auto;
   top: -75%;
@@ -24,4 +24,4 @@ mat-card.signup {
   right: 0;
   width: 50px;
   height: 50px;
-} */
+}

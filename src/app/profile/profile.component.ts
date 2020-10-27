@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
-import { User } from '../auth/user.model';
-import { ProfileService } from './profile.service';
-import { Comment } from '../books/comment.model';
-import { query } from '@angular/animations';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Params, Router} from '@angular/router';
+import {User} from '../auth/user.model';
+import {ProfileService} from './profile.service';
+import {Comment} from '../books/comment.model';
+import {query} from '@angular/animations';
 
 @Component({
   selector: 'app-profile',
@@ -19,7 +19,8 @@ export class ProfileComponent implements OnInit {
     private profileService: ProfileService,
     private route: ActivatedRoute,
     private router: Router
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params: Params) => {
@@ -33,10 +34,10 @@ export class ProfileComponent implements OnInit {
         });
 
     });
-    this.profileService.getUser(this.uid).subscribe((user:User)=>{
-      this.userProfile=user
+    this.profileService.getUser(this.uid).subscribe((user: User) => {
+      this.userProfile = user;
       console.log(this.userProfile);
 
-    })
+    });
   }
 }

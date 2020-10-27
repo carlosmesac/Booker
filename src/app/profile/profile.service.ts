@@ -1,11 +1,12 @@
-import { Injectable } from '@angular/core';
-import { AngularFireDatabase } from '@angular/fire/database';
+import {Injectable} from '@angular/core';
+import {AngularFireDatabase} from '@angular/fire/database';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProfileService {
-  constructor(private fireDB: AngularFireDatabase) {}
+  constructor(private fireDB: AngularFireDatabase) {
+  }
 
   getComments(UID: string) {
     return this.fireDB
@@ -15,10 +16,10 @@ export class ProfileService {
       .valueChanges();
   }
 
-  getUser(UID:string){
+  getUser(UID: string) {
     return this.fireDB
-    .object('users/'+ UID)
-    .valueChanges();
+      .object('users/' + UID)
+      .valueChanges();
 
   }
 }

@@ -1,11 +1,11 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { AuthService } from '../auth/auth.service';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFireDatabase } from '@angular/fire/database';
-import { Comment } from './comment.model';
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Observable, Subject} from 'rxjs';
+import {map} from 'rxjs/operators';
+import {AuthService} from '../auth/auth.service';
+import {AngularFireAuth} from '@angular/fire/auth';
+import {AngularFireDatabase} from '@angular/fire/database';
+import {Comment} from './comment.model';
 
 export type Book = {
   id: string;
@@ -47,7 +47,8 @@ export class BooksService {
     private http: HttpClient,
     private authService: AuthService,
     private fireDB: AngularFireDatabase
-  ) {}
+  ) {
+  }
 
   search(query: string): Observable<Book[]> {
     return this.http
@@ -77,12 +78,12 @@ export class BooksService {
   }
 
   postComment(liked: boolean, comment: string) {
-    const thumbnail = this.getLastBook().volumeInfo.imageLinks.thumbnail.replace('=curl&source=gbs_api','')  ;
+    const thumbnail = this.getLastBook().volumeInfo.imageLinks.thumbnail.replace('=curl&source=gbs_api', '');
     const title = this.getLastBook().volumeInfo.title;
     const date = Date.now();
     const ID = this.fireDB.createPushId();
     const userCommentRef = this.fireDB.object(
-    'comments/' + ID
+      'comments/' + ID
     );
     userCommentRef.set({
       thumbnail: thumbnail,
@@ -94,13 +95,13 @@ export class BooksService {
       ID: ID
     });
 
-  //   // FETCH ALL DATA
-  //   const itemRef = this.fireDB.object('/');
-  //   itemRef.snapshotChanges().subscribe((action) => {
-  //     console.log(action.type);
-  //     console.log(action.key);
-  //     console.log(action.payload.val());
-  //   });
-  // }
+    //   // FETCH ALL DATA
+    //   const itemRef = this.fireDB.object('/');
+    //   itemRef.snapshotChanges().subscribe((action) => {
+    //     console.log(action.type);
+    //     console.log(action.key);
+    //     console.log(action.payload.val());
+    //   });
+    // }
   }
 }

@@ -4,13 +4,12 @@ import 'firebase/auth';
 import {BehaviorSubject} from 'rxjs';
 import {Router} from '@angular/router';
 import {AngularFireAuth} from '@angular/fire/auth';
-import { AngularFireDatabase } from '@angular/fire/database';
+import {AngularFireDatabase} from '@angular/fire/database';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-
   loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   error: BehaviorSubject<string> = new BehaviorSubject<string>('');
   uid: BehaviorSubject<string> = new BehaviorSubject<string>('');
@@ -20,13 +19,13 @@ export class AuthService {
   constructor(private router: Router,
               private fireAuth: AngularFireAuth,
               private fireDB: AngularFireDatabase,
-              ) {
+  ) {
 
     this.fireAuth.onAuthStateChanged(user => {
       if (user) {
         console.log(user);
-        this.setUID(user.uid)
-        this.currentID2.next(user.uid)
+        this.setUID(user.uid);
+        this.currentID2.next(user.uid);
         this.loggedIn.next(true);
       }
     });
@@ -68,7 +67,7 @@ export class AuthService {
     try {
       await firebase.auth().signOut();
       this.loggedIn.next(false);
-      this.setUID(null)
+      this.setUID(null);
       return true;
     } catch (err) {
       console.log(err);
@@ -78,22 +77,23 @@ export class AuthService {
     }
   }
 
-  setUID(UID:string){
-    this.currentID = UID
+  setUID(UID: string) {
+    this.currentID = UID;
   }
 
-  getUID(){
+  getUID() {
     return this.currentID;
   }
 
-  postUser(userProfileName: string ,userProfileID:string, email:string){
+  postUser(userProfileName: string, userProfileID: string, email: string) {
     const creationDate = new Date();
-    const currentDate = creationDate.getFullYear()+'-'+(creationDate.getMonth()+1)+'-'+creationDate.getDate();
-    const usernameRef = this.fireDB.object('users/' + this.currentID)
-    usernameRef.set({username: userProfileName, userID: userProfileID, email: email, creationDate: currentDate})
+    const currentDate = creationDate.getFullYear() + '-' + (creationDate.getMonth() + 1) + '-' + creationDate.getDate();
+    const usernameRef = this.fireDB.object('users/' + this.currentID);
+    usernameRef.set({username: userProfileName, userID: userProfileID, email: email, creationDate: currentDate});
 
   }
- //asdasd
+
+  //asdasd
 
 }
 

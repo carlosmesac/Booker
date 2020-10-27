@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { BooksService } from '../../books.service';
-import { MatDialog } from '@angular/material/dialog';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { ThemePalette } from '@angular/material/core';
-import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
-import { AuthService } from '../../../auth/auth.service';
+import {Component, OnInit} from '@angular/core';
+import {BooksService} from '../../books.service';
+import {MatDialog} from '@angular/material/dialog';
+import {FormGroup, FormControl, Validators} from '@angular/forms';
+import {ThemePalette} from '@angular/material/core';
+import {ProgressSpinnerMode} from '@angular/material/progress-spinner';
+import {AuthService} from '../../../auth/auth.service';
 
 @Component({
   selector: 'app-books-comment',
@@ -19,8 +19,10 @@ export class BooksCommentComponent implements OnInit {
   comment: string;
   colorLike: string = 'basic';
   colorDislike: string = 'basic';
-  userLogged:boolean = false
-  constructor(private booksService: BooksService, private dialog: MatDialog, private authService:AuthService) {}
+  userLogged: boolean = false;
+
+  constructor(private booksService: BooksService, private dialog: MatDialog, private authService: AuthService) {
+  }
 
   ngOnInit(): void {
     this.f = new FormGroup({
@@ -30,8 +32,8 @@ export class BooksCommentComponent implements OnInit {
       ]),
     });
     this.comment = this.f.get('comment').value;
-    if(this.authService.getUID()!=null){
-      this.userLogged = true
+    if (this.authService.getUID() != null) {
+      this.userLogged = true;
     }
 
   }
@@ -41,11 +43,13 @@ export class BooksCommentComponent implements OnInit {
     this.colorLike = 'basic';
     this.colorDislike = 'warn';
   }
+
   onClickLike() {
     this.liked = true;
     this.colorLike = 'primary';
     this.colorDislike = 'basic';
   }
+
   onSubmit() {
     this.booksService.postComment(this.liked, this.comment);
   }

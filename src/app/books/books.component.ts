@@ -6,7 +6,7 @@ import {Book} from './books.service';
 import {Observable} from 'rxjs';
 import {MatDialog} from '@angular/material/dialog';
 import {BookDialogComponent} from './books-dialog/book-dialog.component';
-import { BooksCommentComponent } from './books-dialog/books-comment/books-comment.component';
+import {BooksCommentComponent} from './books-dialog/books-comment/books-comment.component';
 
 
 @Component({
@@ -17,7 +17,7 @@ import { BooksCommentComponent } from './books-dialog/books-comment/books-commen
 export class BooksComponent implements AfterViewInit {
 
   books: Book[];
-  searching:boolean=false
+  searching: boolean = false;
 
   constructor(private booksService: BooksService, private dialog: MatDialog) {
   }
@@ -34,7 +34,7 @@ export class BooksComponent implements AfterViewInit {
         filter((e: KeyboardEvent) => e.keyCode === 13),
         distinctUntilChanged(),
         tap(async (event: KeyboardEvent) => {
-          this.searching = true
+          this.searching = true;
           const bo: Observable<Book[]> = this.booksService.search(
             this.input.nativeElement.value
           );
@@ -42,8 +42,8 @@ export class BooksComponent implements AfterViewInit {
           console.log(this.books);
           this.booksService.setBooks(this.books);
 
-          if(this.books){
-            this.searching = false
+          if (this.books) {
+            this.searching = false;
           }
         })
       )
@@ -57,8 +57,8 @@ export class BooksComponent implements AfterViewInit {
 
     this.dialogSub = dialogRef.afterClosed().subscribe(result => {
       console.log(result);
-      if(result){
-        this.dialog.open(BooksCommentComponent)
+      if (result) {
+        this.dialog.open(BooksCommentComponent);
       }
     });
   }

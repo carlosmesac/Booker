@@ -19,9 +19,9 @@ import {PlaceholderDirective} from '../shared/placeholder/placeholder.directive'
 })
 export class AuthComponent implements OnInit {
   form: FormGroup;
-  loginInvalid: boolean = false;
-  isLoginMode: boolean = true;
-  isLoading: boolean = false;
+  loginInvalid = false;
+  isLoginMode = true;
+  isLoading = false;
 
   @ViewChild('stepper', {static: false}) stepper: MatVerticalStepper;
 
@@ -76,18 +76,11 @@ export class AuthComponent implements OnInit {
     this.isLoginMode = !this.isLoginMode;
   }
 
- async onSubmit() {
+  async onSubmit() {
     if (this.isLoginMode) {
-    await  this.onLoginSync();
-      if (this.form.value.valid) {
-        this.isLoading = true;
-      }
-
+      await this.onLoginSync();
     } else {
-     await this.onSignUpSync();
-      if (this.firstSignUpGroup.value.valid && this.secondSignUpGroup.value.valid && this.thirdSignUpGroup.value.valid) {
-        this.isLoading = true;
-      }
+      await this.onSignUpSync();
 
     }
   }
@@ -97,8 +90,9 @@ export class AuthComponent implements OnInit {
     const username = this.firstSignUpGroup.get('username').value;
     const email = this.secondSignUpGroup.get('email').value;
     const password = this.thirdSignUpGroup.get('password').value;
-    const success = await this.authService.signUpSync(username , email, password);
+    const success = await this.authService.signUpSync(username, email, password);
     if (success) {
+      this.isLoading = true;
       this.router.navigate(['home']);
     } else {
       this.showErrorAlert(this.error);
@@ -111,6 +105,7 @@ export class AuthComponent implements OnInit {
     const success = await this.authService
       .loginSync(email, password);
     if (success) {
+      this.isLoading = true;
       this.router.navigate(['home']);
     } else {
       this.showErrorAlert(this.error);
