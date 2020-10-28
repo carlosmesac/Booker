@@ -3,7 +3,7 @@ export class Comment {
   public liked: boolean;
   public comment: string;
   public title: string;
-  public publishDate: number;
+  public date: number;
 
 
   constructor(thumbnail: string, title: string, liked: boolean, comment: string) {
@@ -11,7 +11,7 @@ export class Comment {
     this.liked = liked;
     this.title = title;
     this.comment = comment;
-    this.publishDate = this.getCurrentDate();
+    this.date = this.getCurrentDate();
   }
 
   getCurrentDate() {

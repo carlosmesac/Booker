@@ -93,16 +93,16 @@ h4 {
 
 .like {
   position: absolute;
-  bottom: 0%;
-  right: 0%;
+  bottom: -5%;
+  right: -5%;
   border: solid;
 }
 
 
 .dislike {
   position: absolute;
-  bottom: 0%;
-  right: 0%;
+  bottom: -5%;
+  right: -5%;
   border: solid;
 }
 

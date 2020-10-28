@@ -1,6 +1,34 @@
-  <mat-dialog-content  class="mat-typography">
-    <p style="font-size: 20px;"> {{comment.comment}} </p>
-  </mat-dialog-content>
-  <mat-dialog-actions align="end">
-    <button mat-raised-button color="accent" mat-dialog-close>Cancel</button>
-  </mat-dialog-actions>
+<mat-dialog-content style="position: relative;" class="mat-typography">
+
+  <p class="title"><i><b>{{comment.title}}</b></i></p>
+
+<div class="book">
+  <img class="cover" src="{{comment.thumbnail}}" alt="">
+  <button
+    mat-fab
+    class="like"
+    color="primary"
+    *ngIf="comment.liked"
+    aria-label="Example icon button with a home icon"
+  >
+    <mat-icon style="justify-content: center">thumb_up</mat-icon>
+  </button>
+
+  <button
+    mat-fab
+    class="dislike"
+    color="warn"
+    *ngIf="!comment.liked"
+    aria-label="Example icon button with a home icon"
+  >
+    <mat-icon style="justify-content: center">thumb_down</mat-icon>
+  </button>
+</div>
+  <p> Opinion: <i>{{comment.comment}}</i></p>
+
+  <p style="margin-top: 20px;">Published date: {{comment.date}}</p>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-raised-button color="primary" mat-dialog-close>Cancel</button>
+</mat-dialog-actions>
