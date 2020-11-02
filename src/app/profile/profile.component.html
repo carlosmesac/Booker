@@ -1,31 +1,39 @@
-<div style="display: flex">
-  <div>
-    <div class="card-container">
-      <div class="upper-container">
-        <div class="image-container">
-          <img
-            src="https://sonoprobarcelona.com/wp-content/uploads/2017/08/anonimo.jpg"
-          />
-        </div>
-      </div>
-      <div class="lower-container">
-        <div>
-          <h3>{{ userProfile.username }}</h3>
-          <h4>{{ userProfile.creationDate }}</h4>
-        </div>
-        <div>
-          <p>
-            sodales accumsan ligula. Aenean sed diam tristique, fermentum mi
-            nec, ornare arch.
-          </p>
-        </div>
-        <div>
-          <a href="#" class="btn">View profile</a>
-        </div>
-      </div>
+<div class="container">
+
+  <div class="profile">
+
+    <div class="profile-image">
+
+      <img src="https://upload.wikimedia.org/wikipedia/commons/a/aa/Joseph_Fourier.jpg" style="width: 30%;" alt="">
+
     </div>
+
+    <div class="profile-settings">
+
+      <h1 class="profile-user-name">{{userProfile.username}}</h1>
+      <button mat-raised-button color="primary" type="button">Editar Perfil</button>
+    </div>
+
+    <div class="profile-stats">
+
+      <ul>
+        <li><span class="profile-stat-count">{{userComments.length}}</span> posts</li>
+        <li><span class="profile-stat-count">188</span> followers</li>
+        <li><span class="profile-stat-count">206</span> following</li>
+      </ul>
+
+    </div>
+
+    <div class="profile-bio">
+      <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit</p>
+
+    </div>
+
   </div>
+
 </div>
+
+
 
 <div>
   <div id="list-th" fxLayout="row wrap">
