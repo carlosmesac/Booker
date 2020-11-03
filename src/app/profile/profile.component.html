@@ -8,31 +8,27 @@
 
     </div>
 
-    <div class="profile-settings">
 
-      <h1 class="profile-user-name">{{userProfile.username}}</h1>
-      <button mat-raised-button color="primary" type="button">Editar Perfil</button>
-    </div>
+    <h1 class="profile-user-name">{{userProfile.username}}</h1>
+    <button mat-raised-button color="primary" type="button">Editar Perfil</button>
 
     <div class="profile-stats">
 
-      <ul>
         <li><span class="profile-stat-count">{{userComments.length}}</span> posts</li>
         <li><span class="profile-stat-count">188</span> followers</li>
         <li><span class="profile-stat-count">206</span> following</li>
-      </ul>
+
 
     </div>
 
     <div class="profile-bio">
-      <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit</p>
+      <p class="description">Lorem ipsum dolor sit, amet sadasdasddddad dasda f faf aff afa aff consectetur adipisicing elit</p>
 
     </div>
 
   </div>
 
 </div>
-
 
 
 <div>
@@ -56,14 +52,14 @@
           </button>
 
           <button
-          mat-fab
-          class="dislike"
-          color="warn"
-          *ngIf="!comment.liked"
-          aria-label="Example icon button with a home icon"
-        >
-          <mat-icon style="justify-content: center">thumb_down</mat-icon>
-        </button>
+            mat-fab
+            class="dislike"
+            color="warn"
+            *ngIf="!comment.liked"
+            aria-label="Example icon button with a home icon"
+          >
+            <mat-icon style="justify-content: center">thumb_down</mat-icon>
+          </button>
           <img src="{{ comment.thumbnail }}" alt="" (click)="onClickImage(comment)"/>
         </div>
       </div>

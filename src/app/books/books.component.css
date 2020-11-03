@@ -62,6 +62,8 @@ Book stuff
 .cover img {
   width: 230px;
   height: 315px;
+  cursor: pointer;
+
 }
 
 .book p {
