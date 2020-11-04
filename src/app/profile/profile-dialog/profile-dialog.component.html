@@ -26,9 +26,16 @@
 </div>
   <p> Opinion: <i>{{comment.comment}}</i></p>
 
+
   <p style="margin-top: 20px;">Published date: {{comment.date}}</p>
 
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-raised-button color="primary" mat-dialog-close>Cancel</button>
+
+  <button mat-raised-button color="warn" mat-dialog-close  *ngIf="comment.userID===userID" (click)="onRemove(comment.ID)"
+
+  >Remove</button>
+
 </mat-dialog-actions>
+
